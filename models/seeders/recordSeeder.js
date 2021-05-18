@@ -1,13 +1,6 @@
-const mongoose = require('mongoose')
 const Record = require('../record')
 const recordSeeds = require('./seed.json').records
-
-mongoose.connect('mongodb://localhost/expense-tracker')
-const db = mongoose.connection
-
-db.on('error', () => {
-  console.log('mongodb error!')
-})
+const db = require('../../config/mongoose')
 
 db.once('open', () => {
   console.log('mongodb connected!')
