@@ -1,0 +1,11 @@
+<span>總金額：</span>
+<h3>{{ totalAmount }}</h3>
+<ul>
+  {{#each records}}
+  <li><i class="{{ this.iconClass }}"></i>
+    <p>{{ this.name }}</p>
+    <p>{{ this.date }}</p>
+    <p>{{ this.amount }}</p>
+  </li>
+  {{/each}}
+</ul>
