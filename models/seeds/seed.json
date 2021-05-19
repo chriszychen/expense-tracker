@@ -2,33 +2,33 @@
   "records": [
     {
       "name": "看電影",
-      "category": "休閒娛樂",
+      "category": "entertainment",
       "date": "2021-04-29",
       "amount": 300
     },
     {
       "name": "牛肉麵",
-      "category": "餐飲食品",
+      "category": "consumption",
       "date": "2021-04-30",
       "amount": 220
     },
     {
       "name": "搭火車",
-      "category": "交通出行",
+      "category": "transportation",
       "date": "2021-05-05",
       "amount": 350
     },
     {
       "name": "買衛生紙",
-      "category": "家居物業",
+      "category": "housewares",
       "date": "2021-05-10",
       "amount": 120
     },
     {
       "name": "繳稅",
-      "category": "其他",
+      "category": "others",
       "date": "2021-05-06",
-      "amount": 300
+      "amount": 3300
     }
   ],
   "categories": [

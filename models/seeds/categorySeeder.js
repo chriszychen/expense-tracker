@@ -1,12 +1,11 @@
-const Record = require('../record')
-const recordSeeds = require('./seed.json').records
+const Category = require('../category')
+const categorySeeds = require('./seed.json').categories
 const db = require('../../config/mongoose')
 
 db.once('open', () => {
-  console.log('mongodb connected!')
-  Record.create(recordSeeds)
+  Category.create(categorySeeds)
     .then(() => {
-      console.log('record seeder done!')
+      console.log('category seeder done!')
       return db.close()
     })
     .then(() => {
