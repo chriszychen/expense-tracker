@@ -63,6 +63,13 @@ app.put('/records/:id', (req, res) => {
 })
 
 // DELETE function
+app.delete('/records/:id', (req, res) => {
+  const id = req.params.id
+  Record.findById(id)
+    .then(record => record.remove())
+    .then(() => res.redirect('/'))
+    .catch(err => console.log(err))
+})
 
 // listen to the server
 app.listen(3000, () => {
