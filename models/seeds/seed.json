@@ -10,6 +10,18 @@
       "name": "牛肉麵",
       "category": "consumption",
       "date": "2021-04-30",
+      "amount": 200
+    },
+    {
+      "name": "搭捷運",
+      "category": "transportation",
+      "date": "2021-04-30",
+      "amount": 50
+    },
+    {
+      "name": "打保齡球",
+      "category": "entertainment",
+      "date": "2021-05-02",
       "amount": 220
     },
     {
@@ -19,10 +31,22 @@
       "amount": 350
     },
     {
+      "name": "買洗衣精",
+      "category": "housewares",
+      "date": "2021-05-05",
+      "amount": 80
+    },
+    {
       "name": "買衛生紙",
       "category": "housewares",
       "date": "2021-05-10",
       "amount": 120
+    },
+    {
+      "name": "繳水電費",
+      "category": "others",
+      "date": "2021-05-08",
+      "amount": 1300
     },
     {
       "name": "繳稅",
