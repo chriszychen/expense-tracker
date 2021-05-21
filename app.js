@@ -57,9 +57,16 @@ app.get('/records/new', (req, res) => {
 // CREATE function
 app.post('/records', (req, res) => {
   const record = req.body
-  Record.create(record)
-    .then(() => res.redirect('/'))
-    .catch(err => console.log(err))
+  let validationError = false
+  if (!inputValidation(record)) {
+    // 回傳輸入資料錯誤提示
+    validationError = true
+    res.render('new', { record, validationError, date: record.date })
+  } else {
+    return Record.create(record)
+      .then(() => res.redirect('/'))
+      .catch(err => console.log(err))
+  }
 })
 
 // render edit page
@@ -75,13 +82,20 @@ app.get('/records/:id/edit', (req, res) => {
 app.put('/records/:id', (req, res) => {
   const id = req.params.id
   const editedRecord = req.body
-  Record.findById(id)
-    .then(record => {
-      Object.assign(record, editedRecord)
-      return record.save()
-    })
-    .then(() => res.redirect('/'))
-    .catch(err => console.log(err))
+  let validationError = false
+  if (!inputValidation(editedRecord)) {
+    // 回傳輸入資料錯誤提示
+    validationError = true
+    res.render('edit', { record: editedRecord, validationError })
+  } else {
+    return Record.findById(id)
+      .then(record => {
+        Object.assign(record, editedRecord)
+        return record.save()
+      })
+      .then(() => res.redirect('/'))
+      .catch(err => console.log(err))
+  }
 })
 
 // DELETE function
@@ -119,4 +133,15 @@ function getDefaultDate() {
 
 function getAccountFormat(amount) {
   return amount.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ',')
+}
+
+function inputValidation(record) {
+  // Required validation
+  for (const key in record) {
+    if (!record[key].length) return false
+  }
+  // category select validation
+  if (record.category === 'non-select') return false
+  // pass validation
+  return true
 }

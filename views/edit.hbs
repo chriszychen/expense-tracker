@@ -5,6 +5,15 @@
       <h3 class="font-weight-bold m-0">請修改你的支出</h3>
     </div>
   </div>
+  {{#if validationError}}
+  <div class="row">
+    <div class="col-12 col-sm-8 ml-auto ">
+      <div class="alert alert-danger mt-3 mb-0" role="alert">
+        請確實填寫支出欄位！
+      </div>
+    </div>
+  </div>
+  {{/if}}
   <form action="/records/{{ record._id }}?_method=PUT" method="POST">
     <div class="row form-group mt-4">
       <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
@@ -27,7 +36,7 @@
         <label for="category" class="col-form-label font-weight-bold">類別*：</label>
       </div>
       <div class="col-12 col-sm-8">
-        <select name="category" id="category" class="form-control">
+        <select name="category" id="category" class="form-control" required>
           <option value="housewares" {{#if (eq record.category 'housewares' )}} selected {{/if}}>家居物業</option>
           <option value="transportation" {{#if (eq record.category 'transportation' )}} selected {{/if}}>交通出行</option>
           <option value="entertainment" {{#if (eq record.category 'entertainment' )}} selected {{/if}}>休閒娛樂</option>
@@ -47,7 +56,7 @@
     </div>
     <div class="row">
       <div class="col-12 col-sm-8 ml-auto text-center">
-        <button type="submit" class="btn btn-primary">送出</button>
+        <button type="submit" class="btn btn-primary btn-lg">送出</button>
       </div>
     </div>
   </form>
