@@ -1,13 +1,13 @@
 <div class="container new-container mt-3 px-5">
   <div class="row">
-    <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">*必填欄位</div>
-    <div class="col-12 col-sm-8 text-center">
+    <div class="col-12 col-sm-3 d-flex justify-content-center align-items-center">*必填欄位</div>
+    <div class="col-12 col-sm-9 text-center">
       <h3 class="font-weight-bold m-0">請輸入你的支出</h3>
     </div>
   </div>
   {{#if validationError}}
   <div class="row">
-    <div class="col-12 col-sm-8 ml-auto ">
+    <div class="col-12 col-sm-9 ml-auto ">
       <div class="alert alert-danger mt-3 mb-0" role="alert">
         請確實填寫支出欄位！
       </div>
@@ -16,26 +16,26 @@
   {{/if}}
   <form action="/records" method="POST">
     <div class="row form-group mt-4">
-      <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+      <div class="col-12 col-sm-3 d-flex justify-content-center align-items-center">
         <label for="name" class="col-form-label font-weight-bold">名稱*：</label>
       </div>
-      <div class="col-12 col-sm-8">
+      <div class="col-12 col-sm-9">
         <input type="text" name="name" id="name" class="form-control" value="{{ record.name }}" required>
       </div>
     </div>
     <div class="row form-group mt-4">
-      <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+      <div class="col-12 col-sm-3 d-flex justify-content-center align-items-center">
         <label for="date" class="col-form-label font-weight-bold">日期*：</label>
       </div>
-      <div class="col-12 col-sm-8">
+      <div class="col-12 col-sm-9">
         <input type="date" name="date" id="date" value="{{ date }}" class="form-control" required>
       </div>
     </div>
     <div class="row form-group mt-4">
-      <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+      <div class="col-12 col-sm-3 d-flex justify-content-center align-items-center">
         <label for="category" class="col-form-label font-weight-bold">類別*：</label>
       </div>
-      <div class="col-12 col-sm-8">
+      <div class="col-12 col-sm-9">
         <select name="category" id="category" class="form-control" required>
           <option value="non-select" selected hidden>Select</option>
           <option value="housewares" {{#if (eq record.category 'housewares' )}} selected {{/if}}>家居物業</option>
@@ -47,16 +47,16 @@
       </div>
     </div>
     <div class="row form-group mt-4">
-      <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+      <div class="col-12 col-sm-3 d-flex justify-content-center align-items-center">
         <label for="amount" class="col-form-label font-weight-bold">金額*：</label>
       </div>
-      <div class="col-12 col-sm-8">
+      <div class="col-12 col-sm-9">
         <input type="number" name="amount" id="amount" step="1" class="form-control" value="{{ record.amount }}"
           required>
       </div>
     </div>
     <div class="row">
-      <div class="col-12 col-sm-8 ml-auto text-center">
+      <div class="col-12 col-sm-9 ml-auto text-center">
         <button type="submit" class="btn btn-primary btn-lg">新增支出</button>
       </div>
     </div>
