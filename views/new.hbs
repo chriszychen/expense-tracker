@@ -1,3 +1,61 @@
+<div class="container new-container mt-3 px-5">
+  <div class="row">
+    <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">*必填欄位</div>
+    <div class="col-12 col-sm-8 text-center">
+      <h3 class="font-weight-bold m-0">請輸入你的支出</h3>
+    </div>
+  </div>
+  <form action="/records" method="POST">
+    <div class="row form-group mt-4">
+      <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+        <label for="name" class="col-form-label font-weight-bold">名稱*：</label>
+      </div>
+      <div class="col-12 col-sm-8">
+        <input type="text" name="name" id="name" class="form-control" required>
+      </div>
+    </div>
+    <div class="row form-group mt-4">
+      <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+        <label for="date" class="col-form-label font-weight-bold">日期*：</label>
+      </div>
+      <div class="col-12 col-sm-8">
+        <input type="date" name="date" id="date" value="{{ date }}" class="form-control" required>
+      </div>
+    </div>
+    <div class="row form-group mt-4">
+      <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+        <label for="category" class="col-form-label font-weight-bold">類別*：</label>
+      </div>
+      <div class="col-12 col-sm-8">
+        <select name="category" id="category" class="form-control">
+          <option value="" selected hidden>Select</option>
+          <option value="housewares">家居物業</option>
+          <option value="transportation">交通出行</option>
+          <option value="entertainment">休閒娛樂</option>
+          <option value="consumption">餐飲食品</option>
+          <option value="others">其他</option>
+        </select>
+      </div>
+    </div>
+    <div class="row form-group mt-4">
+      <div class="col-12 col-sm-4 d-flex justify-content-center align-items-center">
+        <label for="amount" class="col-form-label font-weight-bold">金額*：</label>
+      </div>
+      <div class="col-12 col-sm-8">
+        <input type="number" name="amount" id="amount" step="1" class="form-control" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-8 ml-auto text-center">
+        <button type="submit" class="btn btn-primary">新增支出</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+{{!--
 <p>*必填欄位</p>
 <h3>請輸入你的支出</h3>
 <form action="/records" method="POST">
@@ -25,4 +83,4 @@
     <input type="number" name="amount" id="amount" step="1" required>
   </div>
   <button type="submit">新增支出</button>
-</form>
+</form> --}}

@@ -1,4 +1,4 @@
-.index-container {
+.index-container, .new-container {
   font: 1em sans-serif;
   color: #666666;
 }
@@ -25,4 +25,8 @@
 
 .record-amount {
   font-size: 2vw;
+}
+
+.col-form-label {
+  font-size: 20px;
 }
