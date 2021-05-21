@@ -1,0 +1,28 @@
+.index-container {
+  font: 1em sans-serif;
+  color: #666666;
+}
+.total-amount-text {
+  font-size: 2vw;
+}
+
+.total-amount-number {
+  font-size: 6vw;
+}
+
+
+.category-icon {
+  font-size: 4vw;
+  color: #85baff;
+}
+.record-name {
+  font-size: 1vw;
+}
+
+.record-date {
+  font-size: 1vw;
+}
+
+.record-amount {
+  font-size: 2vw;
+}
