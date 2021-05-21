@@ -15,12 +15,14 @@ app.use(methodOverride('_method'))
 app.use(express.static('public'))
 
 // --- routes setting ---
+
+// render index page
 app.get('/', (req, res) => {
   Promise.all([Record.find().lean().sort('-date'), Category.find().lean()])
     .then(results => {
       const records = results[0]
       const categories = results[1]
-      const totalAmount = getTotalAmount(records)
+      const totalAmount = getAccountFormat(getTotalAmount(records))
       records.forEach(record => {
         record.iconClass = getIconClass(record.category, categories)
       })
@@ -28,6 +30,24 @@ app.get('/', (req, res) => {
     })
     .catch(err => console.log(err))
 })
+
+// render filtered records
+app.get('/records/filter', (req, res) => {
+  const categoryFilter = req.query.filter
+  Promise.all([Record.find().lean().sort('-date'), Category.find().lean()])
+    .then(results => {
+      const records = results[0]
+      const categories = results[1]
+      const filterRecords = records.filter(record => record.category === categoryFilter)
+      const totalAmount = getAccountFormat(getTotalAmount(filterRecords))
+      filterRecords.forEach(record => {
+        record.iconClass = getIconClass(record.category, categories)
+      })
+      res.render('index', { records: filterRecords, totalAmount, categoryFilter })
+    })
+    .catch(err => console.log(err))
+})
+
 // render new page
 app.get('/records/new', (req, res) => {
   const date = getDefaultDate()
@@ -50,6 +70,7 @@ app.get('/records/:id/edit', (req, res) => {
     .then(record => res.render('edit', { record }))
     .catch(err => console.log(err))
 })
+
 // UPDATE function
 app.put('/records/:id', (req, res) => {
   const id = req.params.id
@@ -94,4 +115,8 @@ function getDefaultDate() {
   const month = ('0' + (today.getMonth() + 1)).slice(-2)
   const date = ('0' + today.getDate()).slice(-2)
   return `${year}-${month}-${date}`
+}
+
+function getAccountFormat(amount) {
+  return amount.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ',')
 }
