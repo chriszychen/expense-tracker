@@ -9,7 +9,7 @@
         <div class="col-12">
           <form class="d-flex" name="filter-form" action="/records/filter" method="GET">
             <div class="container-fluid form-group filter-dropdown">
-              <select name="filter" class="form-control mx-auto" id='inputType' onchange="submit()"
+              <select name="filter" class="form-control mx-auto" id='expense-filter' onchange="submit()"
                 style="cursor: pointer; max-width: 80%;">
                 <option value="" selected hidden>支出分類</option>
                 <option value="housewares" {{#if (eq categoryFilter 'housewares' )}} selected {{/if}}>家居物業</option>

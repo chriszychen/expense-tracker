@@ -1,3 +1,6 @@
+body {
+  background-color: #fff6f5;
+}
 .index-container, .new-container {
   font: 1em sans-serif;
   color: #666666;
@@ -38,4 +41,8 @@
 .icon-button {
   width: 3vw;
   height: 3vw;
+}
+
+#expense-filter option {
+  font-size: 15px;
 }
