@@ -28,7 +28,7 @@ router.get('/new', (req, res) => {
 })
 
 // CREATE function
-router.post('', (req, res) => {
+router.post('/', (req, res) => {
   const record = req.body
   let validationError = false
   if (!inputValidation(record)) {

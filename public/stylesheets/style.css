@@ -8,8 +8,8 @@
 
 .total-amount-number {
   font-size: 6vw;
+  color: tomato;
 }
-
 
 .category-icon {
   font-size: 4vw;
@@ -29,4 +29,13 @@
 
 .col-form-label {
   font-size: 20px;
+}
+
+.btn {
+  font-size: 1.5vw;
+}
+
+.icon-button {
+  width: 3vw;
+  height: 3vw;
 }

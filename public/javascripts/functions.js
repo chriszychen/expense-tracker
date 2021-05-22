@@ -22,6 +22,8 @@ const functions = {
     for (const key in record) {
       if (!record[key].length) return false
     }
+    // Space name check
+    if (record.name.trim().length === 0) return false
     // category select validation
     if (record.category === 'non-select') return false
     // pass validation
