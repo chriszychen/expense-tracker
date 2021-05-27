@@ -7,16 +7,15 @@ const { getAccountFormat, getTotalAmount, getIconClass, getDefaultDate, inputVal
 // render filtered records
 router.get('/filter', (req, res) => {
   const categoryFilter = req.query.filter
-  Promise.all([Record.find().lean().sort('-date'), Category.find().lean()])
+  Promise.all([Record.find({ category: categoryFilter }).lean().sort('-date'), Category.find().lean()])
     .then(results => {
-      const records = results[0]
+      const filteredRecords = results[0]
       const categories = results[1]
-      const filterRecords = records.filter(record => record.category === categoryFilter)
-      const totalAmount = getAccountFormat(getTotalAmount(filterRecords))
-      filterRecords.forEach(record => {
+      const totalAmount = getAccountFormat(getTotalAmount(filteredRecords))
+      filteredRecords.forEach(record => {
         record.iconClass = getIconClass(record.category, categories)
       })
-      res.render('index', { records: filterRecords, totalAmount, categoryFilter })
+      res.render('index', { records: filteredRecords, totalAmount, categoryFilter })
     })
     .catch(err => console.log(err))
 })
