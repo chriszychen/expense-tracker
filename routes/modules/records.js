@@ -53,7 +53,7 @@ router.get('/:id/edit', (req, res) => {
 // UPDATE function
 router.put('/:id', (req, res) => {
   const id = req.params.id
-  const editedRecord = req.body
+  const editedRecord = Object.assign({ _id: id }, req.body) // pass the id to view template for next submit route
   let validationError = false
   if (!inputValidation(editedRecord)) {
     // 回傳輸入資料錯誤提示
