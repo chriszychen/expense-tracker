@@ -34,7 +34,7 @@
       </div>
     </div>
   </div>
-  <ul class="list-group">
+  <ul class="list-group" id="record-panel">
     {{#each records}}
     <div class="row d-flex justify-content-center">
       <div class="col-10">
@@ -51,11 +51,11 @@
               <p class="font-weight-bold record-amount">$ {{ this.amount }}</p>
             </div>
             <div class="col-auto d-flex flex-column justify-content-around">
-              <a href="/records/{{ this._id }}/edit" class="btn btn-success icon-button mr-3"><i
-                  class="fas fa-edit"></i></a>
-              <form action="/records/{{ this._id }}?_method=DELETE" method="POST">
-                <button type="submit" class="btn btn-danger icon-button"><i class="fas fa-trash-alt"></i></button>
-              </form>
+              <a href="/records/{{ this._id }}/edit" class="btn btn-success icon-button"><i
+                  class="fas fa-edit fa-lg"></i></a>
+              <button type="button" class="btn btn-danger icon-button delete-button" data-toggle="modal"
+                data-target="#recordModal" data-name="{{ this.name }}" data-id="{{ this._id }}"><i
+                  class="fas fa-trash-alt fa-lg"></i></button>
             </div>
           </div>
         </li>
@@ -63,4 +63,26 @@
     </div>
     {{/each}}
   </ul>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="recordModal" tabindex="-1" role="dialog" aria-labelledby="recordModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        確定要刪除此筆支出紀錄？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <form action="/records/:id?_method=DELETE" method="POST" style="display: inline;" id="confirm-form">
+          <button type="submit" class="btn btn-primary">確定</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
