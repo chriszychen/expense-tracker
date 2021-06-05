@@ -1,61 +1,70 @@
 {
-  "records": [
+  "recordSeeds": [
     {
       "name": "看電影",
+      "merchant": "威秀",
       "category": "entertainment",
       "date": "2021-04-29",
       "amount": 300
     },
     {
       "name": "牛肉麵",
+      "merchant": "李記川味牛肉麵",
       "category": "consumption",
       "date": "2021-04-30",
       "amount": 200
     },
     {
       "name": "搭捷運",
+      "merchant": "台北捷運",
       "category": "transportation",
       "date": "2021-04-30",
       "amount": 50
     },
     {
       "name": "打保齡球",
+      "merchant": "保齡球館",
       "category": "entertainment",
       "date": "2021-05-02",
       "amount": 220
     },
     {
       "name": "搭火車",
+      "merchant": "台鐵",
       "category": "transportation",
       "date": "2021-05-05",
       "amount": 350
     },
     {
       "name": "買洗衣精",
+      "merchant": "全聯",
       "category": "housewares",
       "date": "2021-05-05",
       "amount": 80
     },
     {
       "name": "買衛生紙",
+      "merchant": "全聯",
       "category": "housewares",
       "date": "2021-05-10",
       "amount": 120
     },
     {
       "name": "繳水電費",
+      "merchant": "台水台電",
       "category": "others",
       "date": "2021-05-08",
       "amount": 1300
     },
     {
       "name": "繳稅",
+      "merchant": "國稅局",
       "category": "others",
       "date": "2021-05-06",
       "amount": 3300
     }
   ],
-  "categories": [
+  "categorySeeds": [
     {
       "name": "housewares",
       "name_cn": "家居物業",

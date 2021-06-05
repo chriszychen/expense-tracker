@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
-const { getAccountFormat, getTotalAmount, getIconClass, getDefaultDate, inputValidation } = require('../../public/javascripts/functions')
+const { getAccountFormat, getTotalAmount, getIconClass, getDefaultDate, getInputDateString, getUnixTime, inputValidation } = require('../../public/javascripts/functions')
 
 // render filtered records
 router.get('/filter', (req, res) => {
@@ -34,6 +34,7 @@ router.post('/', (req, res) => {
     validationError = true
     res.render('new', { record, validationError, date: record.date })
   } else {
+    record.date = getUnixTime(record.date)
     return Record.create(record)
       .then(() => res.redirect('/'))
       .catch(err => console.log(err))
@@ -45,7 +46,10 @@ router.get('/:id/edit', (req, res) => {
   const id = req.params.id
   Record.findById(id)
     .lean()
-    .then(record => res.render('edit', { record }))
+    .then(record => {
+      record.date = getInputDateString(record.date)
+      res.render('edit', { record })
+    })
     .catch(err => console.log(err))
 })
 
@@ -62,6 +66,7 @@ router.put('/:id', (req, res) => {
     return Record.findById(id)
       .then(record => {
         Object.assign(record, editedRecord)
+        record.date = getUnixTime(record.date)
         return record.save()
       })
       .then(() => res.redirect('/'))

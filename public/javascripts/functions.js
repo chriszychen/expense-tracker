@@ -14,6 +14,18 @@ const functions = {
     const date = ('0' + today.getDate()).slice(-2)
     return `${year}-${month}-${date}`
   },
+  getInputDateString: function (unixTime) {
+    const dateString = new Date(unixTime)
+    const year = dateString.getFullYear()
+    const month = ('0' + (dateString.getMonth() + 1)).slice(-2)
+    const date = ('0' + dateString.getDate()).slice(-2)
+    return `${year}-${month}-${date}`
+  },
+  getUnixTime: function (inputDateString) {
+    const dateArray = inputDateString.split('-')
+    const dateString = new Date(dateArray[0], dateArray[1] - 1, dateArray[2])
+    return Date.parse(dateString)
+  },
   getAccountFormat: function (amount) {
     return amount.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ',')
   },
