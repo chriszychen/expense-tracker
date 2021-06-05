@@ -18,12 +18,12 @@ body {
   font-size: 4vw;
   color: #85baff;
 }
-.record-name {
+.record-name, .record-date {
   font-size: 1.5vw;
 }
 
-.record-date {
-  font-size: 1.5vw;
+.merchant-icon, .record-merchant {
+  font-size: 1.25vw;
 }
 
 .record-amount {

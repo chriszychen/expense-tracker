@@ -9,8 +9,7 @@ router.get('/filter', (req, res) => {
   const categoryFilter = req.query.filter
   Promise.all([Record.find({ category: categoryFilter }).lean().sort('-date'), Category.find().lean()])
     .then(results => {
-      const filteredRecords = results[0]
-      const categories = results[1]
+      const [filteredRecords, categories] = results
       const totalAmount = getAccountFormat(getTotalAmount(filteredRecords))
       filteredRecords.forEach(record => {
         record.iconClass = getIconClass(record.category, categories)
@@ -31,7 +30,7 @@ router.post('/', (req, res) => {
   const record = req.body
   let validationError = false
   if (!inputValidation(record)) {
-    // 回傳輸入資料錯誤提示
+    // display alert for validation error
     validationError = true
     res.render('new', { record, validationError, date: record.date })
   } else {
@@ -56,7 +55,7 @@ router.put('/:id', (req, res) => {
   const editedRecord = Object.assign({ _id: id }, req.body) // pass the id to view template for next submit route
   let validationError = false
   if (!inputValidation(editedRecord)) {
-    // 回傳輸入資料錯誤提示
+    // display alert for validation error
     validationError = true
     res.render('edit', { record: editedRecord, validationError })
   } else {
