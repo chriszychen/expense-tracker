@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
         record.iconClass = getIconClass(record.category, categories)
         record.date = getInputDateString(record.date)
       })
-      res.render('index', { records, totalAmount, startDate: '2018-01-01', endDate: today })
+      res.render('index', { records, totalAmount, startDate: '2021-01-01', endDate: today })
     })
     .catch(err => console.log(err))
 })

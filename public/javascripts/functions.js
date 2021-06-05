@@ -35,7 +35,7 @@ const functions = {
       if (!record[key].length) return false
     }
     // Space name check
-    if (record.name.trim().length === 0) return false
+    if (record.name.trim().length === 0 || record.merchant.trim().length === 0) return false
     // category select validation
     if (record.category === 'non-select') return false
     // pass validation

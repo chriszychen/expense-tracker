@@ -8,7 +8,7 @@ const { getAccountFormat, getTotalAmount, getIconClass, getDefaultDate, getInput
 router.get('/filter', (req, res) => {
   const categoryFilter = req.query.category
   let { startDate, endDate } = req.query
-  startDate = startDate || '2018-01-01'
+  startDate = startDate || '2021-01-01'
   endDate = endDate || getDefaultDate()
   if (getUnixTime(startDate) > getUnixTime(endDate)) {
     [startDate, endDate] = [endDate, startDate]
