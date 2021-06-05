@@ -4,14 +4,32 @@
     <div class="col-10">
       <div class="row">
         <div class="mx-auto">
-          <a href="/records/new" class="btn btn-outline-info ml-3 mb-3">新增支出</a>
+          <a href="/records/new" class="btn btn-outline-info ml-3 mb-4">新增支出</a>
         </div>
-        <div class="col-12">
-          <form class="d-flex" name="filter-form" action="/records/filter" method="GET">
+      </div>
+      <form name="filter-form" action="/records/filter" method="GET">
+        <div class="row mb-3">
+          <div class="col-8 mx-auto d-flex justify-content-around">
+            <div class="text-center pt-1 pl-3">從</div>
+            <div class="px-0">
+              <div class="container-fluid form-group filter-dropdown mb-0">
+                <input type="date" name="startDate" value="{{ startDate }}" onchange="submit()">
+              </div>
+            </div>
+            <div class="text-center pt-1">到</div>
+            <div class="px-0">
+              <div class="container-fluid form-group filter-dropdown mb-0">
+                <input type="date" name="endDate" value="{{ endDate }}" onchange="submit()">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8 mx-auto">
             <div class="container-fluid form-group filter-dropdown">
-              <select name="filter" class="form-control mx-auto" id='expense-filter' onchange="submit()"
-                style="cursor: pointer; max-width: 80%;">
-                <option value="" selected hidden>支出分類</option>
+              <select name="category" class="form-control mx-auto" id='category-filter' onchange="submit()"
+                style="cursor: pointer;">
+                <option value="">全部分類</option>
                 <option value="housewares" {{#if (eq categoryFilter 'housewares' )}} selected {{/if}}>家居物業</option>
                 <option value="transportation" {{#if (eq categoryFilter 'transportation' )}} selected {{/if}}>交通出行
                 </option>
@@ -21,9 +39,9 @@
                 <option value="others" {{#if (eq categoryFilter 'others' )}} selected {{/if}}>其他</option>
               </select>
             </div>
-          </form>
+          </div>
         </div>
-      </div>
+      </form>
       <div class="row">
         <div class="col-4 mr-auto">
           <p class="mt-3 ml-5 font-weight-bold total-amount-text">總金額：</h3>
@@ -46,7 +64,8 @@
             <div class="col-auto mr-auto">
               <p class="my-3 font-weight-bold record-name">{{ this.name }}</p>
               <p class="my-3 font-weight-bold record-date">{{ this.date }}</p>
-              <i class="fas fa-store merchant-icon"></i><p class="my-3 font-weight-bold d-inline record-merchant"> {{ this.merchant }}</p>
+              <i class="fas fa-store merchant-icon"></i>
+              <p class="my-3 font-weight-bold d-inline record-merchant"> {{ this.merchant }}</p>
             </div>
             <div class="col-auto d-flex align-items-center">
               <p class="font-weight-bold record-amount">$ {{ this.amount }}</p>
