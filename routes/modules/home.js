@@ -6,7 +6,8 @@ const { getAccountFormat, getTotalAmount, getInputDateString, getIconClass, getD
 
 // render index page
 router.get('/', (req, res) => {
-  Promise.all([Record.find().lean().sort('-date'), Category.find().lean()])
+  const userId = req.user._id
+  Promise.all([Record.find({ userId }).lean().sort('-date'), Category.find().lean()])
     .then(results => {
       const [records, categories] = results
       const totalAmount = getAccountFormat(getTotalAmount(records))
