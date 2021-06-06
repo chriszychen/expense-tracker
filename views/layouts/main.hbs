@@ -13,8 +13,17 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="/"><strong style="font-size: 2vw;">家庭記帳本</strong></a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
+      <a class="navbar-brand" href="/">
+        <strong style="font-size: 2vw;">
+        {{#if isAuthenticated}}{{ user.name }}的{{/if}}家庭記帳本
+        </strong>
+      </a>
+      {{#if isAuthenticated}}
+      <a href="/users/logout" class="btn btn-outline-warning">Log Out</a>
+      {{else}}
+      <a href="/users/login" class="btn btn-outline-light">Log In</a>
+      {{/if}}
     </nav>
   </header>
 
