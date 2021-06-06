@@ -30,20 +30,20 @@ router.post('/register', async (req, res) => {
   if (errors.length) {
     return res.render('register', { errors, name, email, password, confirmPassword })
   }
-  try {
-    const user = await User.findOne({ email }).exec()
-    if (user) {
-      errors.push({ message: '這個 Email 已經註冊過了。' })
-      return res.render('register', { name, email, password, confirmPassword })
-    } else {
-      const salt = await bcrypt.genSalt(10)
-      const hash = await bcrypt.hash(password, salt)
-      await User.create({ name, email, password: hash })
-      return res.redirect('/users/login')
-    }
-  } catch (e) {
-    console.log(e)
-  }
+
+  User.findOne({ email })
+    .then(user => {
+      if (user) {
+        errors.push({ message: '這個 Email 已經註冊過了。' })
+        return res.render('register', { name, email, password, confirmPassword })
+      } else {
+        return bcrypt.genSalt(10)
+          .then(salt => bcrypt.hash(password, salt))
+          .then(hash => User.create({ name, email, password: hash }))
+          .then(() => res.redirect('/users/login'))
+      }
+    })
+    .catch(err => console.log(err))
 })
 
 router.get('/logout', (req, res) => {
