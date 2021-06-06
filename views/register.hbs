@@ -2,13 +2,14 @@
   <div class="col-md-6 m-auto">
     <div class="card card-body">
       <h1 class="text-center mt-3">註冊</h1>
+      {{> message}}
       <form action="/users/register" method="POST">
         <div class="form-group">
           <label for="name">名稱</label>
           <input type="text" id="name" name="name" class="form-control" placeholder="輸入名稱" value="{{ name }}">
         </div>
         <div class="form-group">
-          <label for="email">電子郵件</label>
+          <label for="email">Email</label>
           <input type="email" id="email" name="email" class="form-control" placeholder="輸入 Email" value="{{ email }}">
         </div>
         <div class="form-group">
