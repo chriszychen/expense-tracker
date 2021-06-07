@@ -38,17 +38,4 @@ db.once('open', () => {
       console.log('mongodb disconnected!')
     })
     .catch(err => console.log(err))
-
-  // recordSeeds.forEach(record => {
-  //   record.date = getUnixTime(record.date)
-  // })
-  // Record.create(recordSeeds)
-  //   .then(() => {
-  //     console.log('record seeder done!')
-  //     return db.close()
-  //   })
-  //   .then(() => {
-  //     console.log('mongodb disconnected!')
-  //   })
-  //   .catch(err => console.log(err))
 })
