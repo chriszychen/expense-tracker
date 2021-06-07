@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/record')
-const { getDefaultDate, getInputDateString, getUnixTime, inputValidation } = require('../../public/javascripts/functions')
+const { getDefaultDate, getInputDateString, inputValidation } = require('../../public/javascripts/functions')
 
 // render new page
 router.get('/new', (req, res) => {
@@ -19,7 +19,6 @@ router.post('/', (req, res) => {
     validationError = true
     res.render('new', { record: newRecord, validationError, date: newRecord.date })
   } else {
-    newRecord.date = getUnixTime(newRecord.date)
     return Record.create(newRecord)
       .then(() => res.redirect('/'))
       .catch(err => console.log(err))
@@ -52,8 +51,9 @@ router.put('/:id', (req, res) => {
   } else {
     return Record.findOne({ _id, userId })
       .then(record => {
+        console.log(editedRecord)
         Object.assign(record, editedRecord)
-        record.date = getUnixTime(record.date)
+        console.log(record)
         return record.save()
       })
       .then(() => res.redirect('/'))

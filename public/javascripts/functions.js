@@ -21,18 +21,13 @@ const functions = {
     const date = ('0' + dateString.getDate()).slice(-2)
     return `${year}-${month}-${date}`
   },
-  getUnixTime: function (inputDateString) {
-    const dateArray = inputDateString.split('-')
-    const dateString = new Date(dateArray[0], dateArray[1] - 1, dateArray[2])
-    return Date.parse(dateString)
-  },
   getAccountFormat: function (amount) {
     return amount.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ',')
   },
   inputValidation: function (record) {
     // Required validation
     for (const key in record) {
-      if (!record[key].length) return false
+      if (!record[key]) return false
     }
     // Space name check
     if (record.name.trim().length === 0 || record.merchant.trim().length === 0) return false
