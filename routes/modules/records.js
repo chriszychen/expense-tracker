@@ -51,9 +51,7 @@ router.put('/:id', (req, res) => {
   } else {
     return Record.findOne({ _id, userId })
       .then(record => {
-        console.log(editedRecord)
         Object.assign(record, editedRecord)
-        console.log(record)
         return record.save()
       })
       .then(() => res.redirect('/'))
