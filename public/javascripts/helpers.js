@@ -1,5 +1,5 @@
 const functions = {
-  getIconClass: function (categoryName, categories) {
+  getIconClassName: function (categoryName, categories) {
     const category = categories.find(category => category.name === categoryName)
     return category.iconClass
   },
@@ -7,21 +7,7 @@ const functions = {
     const amounts = records.map(record => record.amount)
     return amounts.reduce((sum, current) => sum + current, 0)
   },
-  getDefaultDate: function () {
-    const today = new Date()
-    const year = today.getFullYear()
-    const month = ('0' + (today.getMonth() + 1)).slice(-2)
-    const date = ('0' + today.getDate()).slice(-2)
-    return `${year}-${month}-${date}`
-  },
-  getInputDateString: function (unixTime) {
-    const dateString = new Date(unixTime)
-    const year = dateString.getFullYear()
-    const month = ('0' + (dateString.getMonth() + 1)).slice(-2)
-    const date = ('0' + dateString.getDate()).slice(-2)
-    return `${year}-${month}-${date}`
-  },
-  getAccountFormat: function (amount) {
+  getAccountingFormat: function (amount) {
     return amount.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ',')
   },
   inputValidation: function (record) {

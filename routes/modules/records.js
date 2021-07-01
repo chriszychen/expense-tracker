@@ -1,12 +1,13 @@
 const express = require('express')
 const router = express.Router()
+const moment = require('moment')
 const Record = require('../../models/record')
-const { getDefaultDate, getInputDateString, inputValidation } = require('../../public/javascripts/functions')
+const { inputValidation } = require('../../public/javascripts/helpers')
 
 // render new page
 router.get('/new', (req, res) => {
-  const date = getDefaultDate()
-  res.render('new', { date })
+  const today = moment().format('YYYY-MM-DD')
+  res.render('new', { date: today })
 })
 
 // CREATE function
@@ -32,7 +33,7 @@ router.get('/:id/edit', (req, res) => {
   Record.findOne({ _id, userId })
     .lean()
     .then(record => {
-      record.date = getInputDateString(record.date)
+      record.date = moment(record.date).format('YYYY-MM-DD')
       res.render('edit', { record })
     })
     .catch(err => console.log(err))
