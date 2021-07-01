@@ -7,19 +7,19 @@
           <a href="/records/new" class="btn btn-outline-info ml-3 mb-4">新增支出</a>
         </div>
       </div>
-      <form name="filter-form" action="/filter" method="GET">
+      <form name="filter-form" action="/filter" method="GET" id="filter-form">
         <div class="row mb-3">
-          <div class="col-8 mx-auto d-flex justify-content-around">
+          <div class="col-8 mx-auto d-flex justify-content-around date-filter">
             <div class="text-center pt-1 pl-3">從</div>
             <div class="px-0">
-              <div class="container-fluid form-group filter-dropdown mb-0">
-                <input type="date" name="startDate" value="{{ startDate }}" onchange="submit()">
+              <div class="container-fluid form-group mb-0">
+                <input type="date" name="startDate" value="{{ startDate }}" id="start-date-input">
               </div>
             </div>
             <div class="text-center pt-1">到</div>
             <div class="px-0">
-              <div class="container-fluid form-group filter-dropdown mb-0">
-                <input type="date" name="endDate" value="{{ endDate }}" onchange="submit()">
+              <div class="container-fluid form-group mb-0">
+                <input type="date" name="endDate" value="{{ endDate }}" id="end-date-input">
               </div>
             </div>
           </div>

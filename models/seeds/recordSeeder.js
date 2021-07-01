@@ -6,12 +6,11 @@ const Record = require('../record')
 const User = require('../user')
 const { recordSeeds } = require('./seed.json')
 const db = require('../../config/mongoose')
-const { getUnixTime } = require('../../public/javascripts/functions')
 
 const SEED_USER = {
-  name: 'user',
-  email: 'user@example.com',
-  password: 'abc1234'
+  name: 'root',
+  email: 'root@example.com',
+  password: '12345678'
 }
 
 db.once('open', () => {
@@ -25,7 +24,6 @@ db.once('open', () => {
     .then(user => {
       const userId = user._id
       recordSeeds.forEach(record => {
-        record.date = getUnixTime(record.date)
         record.userId = userId
       })
       return Record.create(recordSeeds)
