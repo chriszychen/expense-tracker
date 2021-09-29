@@ -10,20 +10,23 @@ const db = require('../../config/mongoose')
 const SEED_USER = {
   name: 'root',
   email: 'root@example.com',
-  password: '12345678'
+  password: '12345678',
 }
 
 db.once('open', () => {
-  bcrypt.genSalt(10)
-    .then(salt => bcrypt.hash(SEED_USER.password, salt))
-    .then(hash => User.create({
-      name: SEED_USER.name,
-      email: SEED_USER.email,
-      password: hash
-    }))
-    .then(user => {
+  bcrypt
+    .genSalt(10)
+    .then((salt) => bcrypt.hash(SEED_USER.password, salt))
+    .then((hash) =>
+      User.create({
+        name: SEED_USER.name,
+        email: SEED_USER.email,
+        password: hash,
+      })
+    )
+    .then((user) => {
       const userId = user._id
-      recordSeeds.forEach(record => {
+      recordSeeds.forEach((record) => {
         record.userId = userId
       })
       return Record.create(recordSeeds)
@@ -35,5 +38,5 @@ db.once('open', () => {
     .then(() => {
       console.log('mongodb disconnected!')
     })
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err))
 })

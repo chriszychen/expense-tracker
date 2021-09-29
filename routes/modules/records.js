@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
   } else {
     return Record.create(newRecord)
       .then(() => res.redirect('/'))
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
   }
 })
 
@@ -32,11 +32,11 @@ router.get('/:id/edit', (req, res) => {
   const _id = req.params.id
   Record.findOne({ _id, userId })
     .lean()
-    .then(record => {
+    .then((record) => {
       record.date = moment(record.date).format('YYYY-MM-DD')
       res.render('edit', { record })
     })
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err))
 })
 
 // UPDATE function
@@ -51,12 +51,12 @@ router.put('/:id', (req, res) => {
     res.render('edit', { record: editedRecord, validationError })
   } else {
     return Record.findOne({ _id, userId })
-      .then(record => {
+      .then((record) => {
         Object.assign(record, editedRecord)
         return record.save()
       })
       .then(() => res.redirect('/'))
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
   }
 })
 
@@ -65,9 +65,9 @@ router.delete('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
   Record.findOne({ _id, userId })
-    .then(record => record.remove())
+    .then((record) => record.remove())
     .then(() => res.redirect('/'))
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err))
 })
 
 module.exports = router

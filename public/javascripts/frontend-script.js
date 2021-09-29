@@ -3,7 +3,7 @@ const filterForm = document.querySelector('#filter-form')
 const startDateInput = document.querySelector('#start-date-input')
 const endDateInput = document.querySelector('#end-date-input')
 
-startDateInput.addEventListener('change', event => {
+startDateInput.addEventListener('change', (event) => {
   if (startDateInput.value > endDateInput.value) {
     window.alert('開始日期須小於或等於結束日期')
   } else {
@@ -11,7 +11,7 @@ startDateInput.addEventListener('change', event => {
   }
 })
 
-endDateInput.addEventListener('change', event => {
+endDateInput.addEventListener('change', (event) => {
   if (endDateInput.value < startDateInput.value) {
     window.alert('結束日期須大於或等於開始日期')
   } else {
@@ -19,7 +19,7 @@ endDateInput.addEventListener('change', event => {
   }
 })
 
-recordPanel.addEventListener('click', event => {
+recordPanel.addEventListener('click', (event) => {
   if (event.target.matches('.delete-button')) {
     const button = event.target
     setModalData(button)

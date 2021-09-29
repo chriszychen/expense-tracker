@@ -14,5 +14,5 @@ db.once('open', () => {
     .then(() => {
       console.log('mongodb disconnected!')
     })
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err))
 })
