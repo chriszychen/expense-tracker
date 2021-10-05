@@ -10,20 +10,21 @@ module.exports = (app) => {
   app.use(passport.session())
   // login strategy
   passport.use(
-    new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-      User.findOne({ email })
-        .then((user) => {
-          if (!user) {
-            return done(null, false, { type: 'danger_msg', message: '這個 Email 尚未註冊！' })
-          }
-          return bcrypt.compare(password, user.password).then((isMatch) => {
-            if (!isMatch) {
-              return done(null, false, { type: 'danger_msg', message: 'Email 或 密碼 輸入錯誤！' })
-            }
-            return done(null, user)
-          })
-        })
-        .catch((err) => done(err, null))
+    new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
+      try {
+        const user = await User.findOne({ email })
+        if (!user) {
+          return done(null, false, { type: 'danger_msg', message: '這個 Email 尚未註冊！' })
+        }
+        const isMatch = await bcrypt.compare(password, user.password)
+        if (!isMatch) {
+          return done(null, false, { type: 'danger_msg', message: 'Email 或 密碼 輸入錯誤！' })
+        }
+        return done(null, user)
+      } catch (err) {
+        console.log(err)
+        done(err, null)
+      }
     })
   )
 
@@ -35,18 +36,20 @@ module.exports = (app) => {
         callbackURL: process.env.FACEBOOK_CALLBACK,
         profileFields: ['email', 'displayName'],
       },
-      (accessToken, refreshToken, profile, done) => {
-        const { name, email } = profile._json
-        User.findOne({ email }).then((user) => {
+      async (accessToken, refreshToken, profile, done) => {
+        try {
+          const { name, email } = profile._json
+          let user = await User.findOne({ email })
           if (user) return done(null, user)
           const randomPassword = Math.random().toString(36).slice(-10)
-          bcrypt
-            .genSalt(10)
-            .then((salt) => bcrypt.hash(randomPassword, salt))
-            .then((hash) => User.create({ name, email, password: hash }))
-            .then((user) => done(null, user))
-            .catch((err) => done(err, false))
-        })
+          const salt = await bcrypt.genSalt(10)
+          const hash = await bcrypt.hash(randomPassword, salt)
+          user = await User.create({ name, email, password: hash })
+          done(null, user)
+        } catch (err) {
+          console.log(err)
+          done(err, false)
+        }
       }
     )
   )
@@ -55,10 +58,13 @@ module.exports = (app) => {
   passport.serializeUser((user, done) => {
     done(null, user.id)
   })
-  passport.deserializeUser((id, done) => {
-    User.findById(id)
-      .lean()
-      .then((user) => done(null, user))
-      .catch((err) => done(err, null))
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const user = await User.findById(id).lean()
+      return done(null, user)
+    } catch (err) {
+      console.log(err)
+      done(err, null)
+    }
   })
 }
