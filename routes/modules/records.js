@@ -11,63 +11,70 @@ router.get('/new', (req, res) => {
 })
 
 // CREATE function
-router.post('/', (req, res) => {
-  const userId = req.user._id
-  const newRecord = Object.assign({ userId }, req.body)
-  let validationError = false
-  if (!inputValidation(newRecord)) {
-    // display alert for validation error
-    validationError = true
-    res.render('new', { record: newRecord, validationError, date: newRecord.date })
-  } else {
-    return Record.create(newRecord)
-      .then(() => res.redirect('/'))
-      .catch((err) => console.log(err))
+router.post('/', async (req, res) => {
+  try {
+    const userId = req.user._id
+    const newRecord = Object.assign({ userId }, req.body)
+    let validationError = false
+    if (!inputValidation(newRecord)) {
+      // display alert for validation error
+      validationError = true
+      res.render('new', { record: newRecord, validationError, date: newRecord.date })
+    } else {
+      await Record.create(newRecord)
+      return res.redirect('/')
+    }
+  } catch (err) {
+    console.log(err)
   }
 })
 
 // render edit page
-router.get('/:id/edit', (req, res) => {
-  const userId = req.user._id
-  const _id = req.params.id
-  Record.findOne({ _id, userId })
-    .lean()
-    .then((record) => {
-      record.date = moment(record.date).format('YYYY-MM-DD')
-      res.render('edit', { record })
-    })
-    .catch((err) => console.log(err))
+router.get('/:id/edit', async (req, res) => {
+  try {
+    const userId = req.user._id
+    const _id = req.params.id
+    const record = await Record.findOne({ _id, userId }).lean()
+    record.date = moment(record.date).format('YYYY-MM-DD')
+    return res.render('edit', { record })
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 // UPDATE function
-router.put('/:id', (req, res) => {
-  const userId = req.user._id
-  const _id = req.params.id
-  const editedRecord = Object.assign({ _id, userId }, req.body) // pass the id to view template for next submit route
-  let validationError = false
-  if (!inputValidation(editedRecord)) {
-    // display alert for validation error
-    validationError = true
-    res.render('edit', { record: editedRecord, validationError })
-  } else {
-    return Record.findOne({ _id, userId })
-      .then((record) => {
-        Object.assign(record, editedRecord)
-        return record.save()
-      })
-      .then(() => res.redirect('/'))
-      .catch((err) => console.log(err))
+router.put('/:id', async (req, res) => {
+  try {
+    const userId = req.user._id
+    const _id = req.params.id
+    const editedRecord = Object.assign({ _id, userId }, req.body) // pass the id to view template for next submit route
+    let validationError = false
+    if (!inputValidation(editedRecord)) {
+      // display alert for validation error
+      validationError = true
+      res.render('edit', { record: editedRecord, validationError })
+    } else {
+      const record = await Record.findOne({ _id, userId })
+      Object.assign(record, editedRecord)
+      await record.save()
+      return res.redirect('/')
+    }
+  } catch (err) {
+    console.log(err)
   }
 })
 
 // DELETE function
-router.delete('/:id', (req, res) => {
-  const userId = req.user._id
-  const _id = req.params.id
-  Record.findOne({ _id, userId })
-    .then((record) => record.remove())
-    .then(() => res.redirect('/'))
-    .catch((err) => console.log(err))
+router.delete('/:id', async (req, res) => {
+  try {
+    const userId = req.user._id
+    const _id = req.params.id
+    const record = await Record.findOne({ _id, userId })
+    await record.remove()
+    return res.redirect('/')
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 module.exports = router
