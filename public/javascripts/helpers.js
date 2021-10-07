@@ -1,4 +1,4 @@
-const functions = {
+module.exports = {
   getIconClassName: function (categoryName, categories) {
     const category = categories.find((category) => category.name === categoryName)
     return category.iconClass
@@ -23,5 +23,3 @@ const functions = {
     return true
   },
 }
-
-module.exports = functions

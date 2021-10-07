@@ -6,6 +6,7 @@ const endDateInput = document.querySelector('#end-date-input')
 startDateInput.addEventListener('change', (event) => {
   if (startDateInput.value > endDateInput.value) {
     window.alert('開始日期須小於或等於結束日期')
+    filterForm.submit()
   } else {
     filterForm.submit()
   }
@@ -14,6 +15,7 @@ startDateInput.addEventListener('change', (event) => {
 endDateInput.addEventListener('change', (event) => {
   if (endDateInput.value < startDateInput.value) {
     window.alert('結束日期須大於或等於開始日期')
+    filterForm.submit()
   } else {
     filterForm.submit()
   }
