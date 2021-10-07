@@ -1,4 +1,11 @@
 {
+  "userSeeds": [
+    {
+      "name": "root",
+      "email": "root@example.com",
+      "password": "12345678"
+    }
+  ],
   "recordSeeds": [
     {
       "name": "看電影",

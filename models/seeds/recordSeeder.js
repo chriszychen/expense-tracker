@@ -4,39 +4,27 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const Record = require('../record')
 const User = require('../user')
-const { recordSeeds } = require('./seed.json')
+const { userSeeds, recordSeeds } = require('./seed.json')
 const db = require('../../config/mongoose')
 
-const SEED_USER = {
-  name: 'root',
-  email: 'root@example.com',
-  password: '12345678',
-}
-
-db.once('open', () => {
-  bcrypt
-    .genSalt(10)
-    .then((salt) => bcrypt.hash(SEED_USER.password, salt))
-    .then((hash) =>
-      User.create({
-        name: SEED_USER.name,
-        email: SEED_USER.email,
-        password: hash,
-      })
-    )
-    .then((user) => {
-      const userId = user._id
-      recordSeeds.forEach((record) => {
-        record.userId = userId
-      })
-      return Record.create(recordSeeds)
+db.once('open', async () => {
+  try {
+    const salt = await bcrypt.genSalt(10)
+    const hash = await bcrypt.hash(userSeeds[0].password, salt)
+    const user = await User.create({
+      name: userSeeds[0].name,
+      email: userSeeds[0].email,
+      password: hash,
     })
-    .then(() => {
-      console.log('record seeder done!')
-      return db.close()
+    recordSeeds.forEach((record) => {
+      record.userId = user._id
     })
-    .then(() => {
-      console.log('mongodb disconnected!')
-    })
-    .catch((err) => console.log(err))
+    await Record.create(recordSeeds)
+    console.log('record seeder done!')
+    await db.close()
+    console.log('mongodb disconnected!')
+  } catch (err) {
+    console.log(err)
+    await db.close()
+  }
 })
