@@ -15,9 +15,7 @@ router.get('/', async (req, res) => {
     if (new Date(startDate) > new Date(endDate)) {
       ;[startDate, endDate] = [endDate, startDate]
     }
-    // 可以再用mongoose aggregate練習query語法
     const [filteredRecords, categories] = await Promise.all([
-      // 抓篩選後的record
       Record.find({
         category: { $regex: categoryFilter },
         date: { $gte: startDate, $lte: endDate },
@@ -25,7 +23,6 @@ router.get('/', async (req, res) => {
       })
         .lean()
         .sort('-date'),
-      // 抓全部的category
       Category.find().lean(),
     ])
     const totalAmount = getAccountingFormat(getTotalAmount(filteredRecords))
@@ -43,32 +40,6 @@ router.get('/', async (req, res) => {
   } catch (err) {
     console.log(err)
   }
-  // Promise.all([
-  //   Record.find({
-  //     category: { $regex: categoryFilter },
-  //     date: { $gte: startDate, $lte: endDate },
-  //     userId,
-  //   })
-  //     .lean()
-  //     .sort('-date'),
-  //   Category.find().lean(),
-  // ])
-  //   .then((results) => {
-  //     const [filteredRecords, categories] = results
-  //     const totalAmount = getAccountingFormat(getTotalAmount(filteredRecords))
-  //     filteredRecords.forEach((record) => {
-  //       record.iconClass = getIconClassName(record.category, categories)
-  //       record.date = moment(record.date).format('YYYY-MM-DD')
-  //     })
-  //     res.render('index', {
-  //       records: filteredRecords,
-  //       totalAmount,
-  //       categoryFilter,
-  //       startDate,
-  //       endDate,
-  //     })
-  //   })
-  //   .catch((err) => console.log(err))
 })
 
 module.exports = router
