@@ -1,71 +1,110 @@
 {
-  "userSeeds": [
-    {
-      "name": "root",
-      "email": "root@example.com",
-      "password": "12345678"
-    }
-  ],
+  "userSeed": {
+    "name": "root",
+    "email": "root@example.com",
+    "password": "12345678"
+  },
   "recordSeeds": [
     {
+      "type": "income",
+      "name": "薪水",
+      "place": "公司",
+      "category": "salary",
+      "date": "2021-04-01",
+      "amount": 35000
+    },
+    {
+      "type": "income",
+      "name": "年終獎金",
+      "place": "公司",
+      "category": "bonus",
+      "date": "2021-03-15",
+      "amount": 100000
+    },
+    {
+      "type": "income",
+      "name": "定存利息",
+      "place": "銀行",
+      "category": "investment",
+      "date": "2021-04-01",
+      "amount": 300
+    },
+    {
+      "type": "income",
+      "name": "撿到錢",
+      "place": "路上",
+      "category": "others",
+      "date": "2021-04-01",
+      "amount": 500
+    },
+    {
+      "type": "expense",
       "name": "看電影",
-      "merchant": "威秀",
+      "place": "威秀",
       "category": "entertainment",
       "date": "2021-04-29",
       "amount": 300
     },
     {
+      "type": "expense",
       "name": "牛肉麵",
-      "merchant": "李記川味牛肉麵",
+      "place": "李記川味牛肉麵",
       "category": "consumption",
       "date": "2021-04-30",
       "amount": 200
     },
     {
+      "type": "expense",
       "name": "搭捷運",
-      "merchant": "台北捷運",
+      "place": "台北捷運",
       "category": "transportation",
       "date": "2021-04-30",
       "amount": 50
     },
     {
+      "type": "expense",
       "name": "打保齡球",
-      "merchant": "保齡球館",
+      "place": "保齡球館",
       "category": "entertainment",
       "date": "2021-05-02",
       "amount": 220
     },
     {
+      "type": "expense",
       "name": "搭火車",
-      "merchant": "台鐵",
+      "place": "台鐵",
       "category": "transportation",
       "date": "2021-05-05",
       "amount": 350
     },
     {
+      "type": "expense",
       "name": "買洗衣精",
-      "merchant": "全聯",
+      "place": "全聯",
       "category": "housewares",
       "date": "2021-05-05",
       "amount": 80
     },
     {
+      "type": "expense",
       "name": "買衛生紙",
-      "merchant": "全聯",
+      "place": "全聯",
       "category": "housewares",
       "date": "2021-05-10",
       "amount": 120
     },
     {
+      "type": "expense",
       "name": "繳水電費",
-      "merchant": "台水台電",
+      "place": "台水台電",
       "category": "others",
       "date": "2021-05-08",
       "amount": 1300
     },
     {
+      "type": "expense",
       "name": "繳稅",
-      "merchant": "國稅局",
+      "place": "國稅局",
       "category": "others",
       "date": "2021-05-06",
       "amount": 3300
@@ -73,26 +112,55 @@
   ],
   "categorySeeds": [
     {
+      "type": "income",
+      "name": "salary",
+      "name_cn": "薪水",
+      "iconClass": "fas fa-suitcase"
+    },
+    {
+      "type": "income",
+      "name": "bonus",
+      "name_cn": "獎金",
+      "iconClass": "fas fa-award"
+    },
+    {
+      "type": "income",
+      "name": "investment",
+      "name_cn": "投資",
+      "iconClass": "fas fa-hand-holding-usd"
+    },
+    {
+      "type": "income",
+      "name": "others",
+      "name_cn": "其他",
+      "iconClass": "fas fa-dollar-sign"
+    },
+    {
+      "type": "expense",
       "name": "housewares",
       "name_cn": "家居物業",
       "iconClass": "fas fa-home"
     },
     {
+      "type": "expense",
       "name": "transportation",
       "name_cn": "交通出行",
       "iconClass": "fas fa-shuttle-van"
     },
     {
+      "type": "expense",
       "name": "entertainment",
       "name_cn": "休閒娛樂",
       "iconClass": "fas fa-grin-beam"
     },
     {
+      "type": "expense",
       "name": "consumption",
       "name_cn": "餐飲食品",
       "iconClass": "fas fa-utensils"
     },
     {
+      "type": "expense",
       "name": "others",
       "name_cn": "其他",
       "iconClass": "fas fa-pen"
