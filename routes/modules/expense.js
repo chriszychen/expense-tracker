@@ -23,6 +23,44 @@ router.get('/', async (req, res) => {
   }
 })
 
+// render filtered records
+router.get('/filter', async (req, res) => {
+  try {
+    const userId = req.user._id
+    const categoryFilter = req.query.category
+    const defaultStartDate = '2021-01-01'
+    let { startDate = defaultStartDate, endDate = moment().format('YYYY-MM-DD') } = req.query // set default value if undefined
+    if (new Date(startDate) > new Date(endDate)) {
+      ;[startDate, endDate] = [endDate, startDate]
+    }
+    const [filteredRecords, categories] = await Promise.all([
+      Record.find({
+        category: { $regex: categoryFilter },
+        date: { $gte: startDate, $lte: endDate },
+        userId,
+        type: 'expense',
+      })
+        .lean()
+        .sort('-date'),
+      Category.find().lean(),
+    ])
+    const totalAmount = getAccountingFormat(getTotalAmount(filteredRecords))
+    filteredRecords.forEach((record) => {
+      record.iconClass = getIconClassName(record.category, categories)
+      record.date = moment(record.date).format('YYYY-MM-DD')
+    })
+    res.render('expense/index', {
+      records: filteredRecords,
+      totalAmount,
+      categoryFilter,
+      startDate,
+      endDate,
+    })
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 // render new page
 router.get('/new', (req, res) => {
   const today = moment().format('YYYY-MM-DD')
