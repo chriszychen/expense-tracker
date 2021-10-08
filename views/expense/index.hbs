@@ -4,10 +4,10 @@
     <div class="col-10">
       <div class="row">
         <div class="mx-auto">
-          <a href="/records/new" class="btn btn-outline-info ml-3 mb-4">新增支出</a>
+          <a href="/expense/records/new" class="btn btn-outline-info ml-3 mb-4">新增支出</a>
         </div>
       </div>
-      <form name="filter-form" action="/filter" method="GET" id="filter-form">
+      <form name="filter-form" action="/expense/records/filter" method="GET" id="filter-form">
         <div class="row mb-3">
           <div class="col-8 mx-auto d-flex justify-content-around date-filter">
             <div class="text-center pt-1 pl-3">從</div>
@@ -64,14 +64,14 @@
             <div class="col-auto mr-auto">
               <p class="my-3 font-weight-bold record-name">{{ this.name }}</p>
               <p class="my-3 font-weight-bold record-date">{{ this.date }}</p>
-              <i class="fas fa-store merchant-icon"></i>
-              <p class="my-3 font-weight-bold d-inline record-merchant"> {{ this.merchant }}</p>
+              <i class="fas fa-store place-icon"></i>
+              <p class="my-3 font-weight-bold d-inline record-place"> {{ this.place }}</p>
             </div>
             <div class="col-auto d-flex align-items-center">
               <p class="font-weight-bold record-amount">$ {{ this.amount }}</p>
             </div>
             <div class="col-auto d-flex flex-column justify-content-around">
-              <a href="/records/{{ this._id }}/edit" class="btn btn-success icon-button"><i
+              <a href="/expense/records/{{ this._id }}/edit" class="btn btn-success icon-button"><i
                   class="fas fa-edit fa-lg"></i></a>
               <button type="button" class="btn btn-danger icon-button delete-button" data-toggle="modal"
                 data-target="#recordModal" data-name="{{ this.name }}" data-id="{{ this._id }}"><i
@@ -99,7 +99,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-        <form action="/records/:id?_method=DELETE" method="POST" style="display: inline;" id="confirm-form">
+        <form action="/expense/records/:id?_method=DELETE" method="POST" style="display: inline;" id="confirm-form">
           <button type="submit" class="btn btn-primary">確定</button>
         </form>
       </div>
