@@ -114,26 +114,26 @@
     {
       "type": "income",
       "name": "salary",
-      "name_cn": "薪水",
+      "name_cn": "薪資所得",
       "iconClass": "fas fa-suitcase"
     },
     {
       "type": "income",
       "name": "bonus",
-      "name_cn": "獎金",
+      "name_cn": "獎金紅利",
       "iconClass": "fas fa-award"
     },
     {
       "type": "income",
       "name": "investment",
-      "name_cn": "投資",
+      "name_cn": "投資報酬",
       "iconClass": "fas fa-hand-holding-usd"
     },
     {
       "type": "income",
       "name": "others",
       "name_cn": "其他",
-      "iconClass": "fas fa-dollar-sign"
+      "iconClass": "fas fa-coins"
     },
     {
       "type": "expense",
