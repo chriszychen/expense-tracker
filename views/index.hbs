@@ -25,7 +25,7 @@
           <p class="mt-3 ml-5 font-weight-bold total-amount-text">總金額：</h3>
         </div>
         <div class="col-auto">
-          <p class="total-amount-number">{{ totalAmount }}</p>
+          <p class="{{#if (lt totalAmount '0')}} total-amount-expense {{else}} total-amount-income {{/if}}">{{ totalAmount }}</p>
         </div>
       </div>
     </div>
@@ -36,8 +36,9 @@
       <div class="col-10">
         <li class="list-group-item">
           <div class="row">
-            <div class="col-2 d-flex justify-content-center align-items-center category-icon"><i
-                class="{{ this.iconClass }}"></i>
+            <div class="col-2 d-flex justify-content-center align-items-center
+              {{#if (eq this.type 'income')}} category-icon-income {{else}} category-icon-expense {{/if}}">
+              <i class="{{ this.iconClass }}"></i>
             </div>
             <div class="col-auto mr-auto">
               <p class="my-3 font-weight-bold record-name">{{ this.name }}</p>

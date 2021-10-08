@@ -25,6 +25,9 @@ app.engine(
       eq: function (v1, v2) {
         return v1 === v2
       },
+      lt: function (v1, v2) {
+        return v1 < v2
+      },
     },
   })
 )

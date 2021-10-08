@@ -9,14 +9,29 @@ body {
   font-size: 2vw;
 }
 
-.total-amount-number {
+.total-amount-income {
   font-size: 6vw;
-  color: tomato;
+  color: lightseagreen;
+}
+
+.total-amount-expense {
+  font-size: 6vw;
+  color: lightcoral;
 }
 
 .category-icon {
   font-size: 4vw;
   color: #85baff;
+}
+
+.category-icon-income {
+  font-size: 4vw;
+  color: lightseagreen;
+}
+
+.category-icon-expense {
+  font-size: 4vw;
+  color: lightcoral;
 }
 .record-name, .record-date {
   font-size: 1.5vw;
