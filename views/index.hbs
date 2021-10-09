@@ -1,6 +1,5 @@
 <div class="container index-container my-3">
   <div class="row d-flex justify-content-center">
-
     <div class="col-10">
       <form name="filter-form" action="/filter" method="GET" id="filter-form">
         <div class="row mb-3">
@@ -26,6 +25,14 @@
         </div>
         <div class="col-auto">
           <p class="{{#if (lt totalAmount '0')}} total-amount-expense {{else}} total-amount-income {{/if}}">{{ totalAmount }}</p>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-around">
+        <div class="col-5 m-3">
+          <canvas id="income-chart" width="400" height="400" aria-label="income doughnut chart"></canvas>
+        </div>
+        <div class="col-5 m-3">
+          <canvas id="expense-chart" width="400" height="400" aria-label="expense doughnut chart"></canvas>
         </div>
       </div>
     </div>
