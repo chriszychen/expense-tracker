@@ -1,4 +1,33 @@
 module.exports = {
+  getIncomeCategorizedSum(records) {
+    const result = {
+      salary: 0,
+      bonus: 0,
+      investment: 0,
+      others: 0,
+    }
+    records.forEach((record) => {
+      if (record.type === 'income') {
+        result[record.category] += record.amount
+      }
+    })
+    return result
+  },
+  getExpenseCategorizedSum(records) {
+    const result = {
+      housewares: 0,
+      transportation: 0,
+      entertainment: 0,
+      consumption: 0,
+      others: 0,
+    }
+    records.forEach((record) => {
+      if (record.type === 'expense') {
+        result[record.category] += record.amount
+      }
+    })
+    return result
+  },
   getIconClassName(categoryName, categories) {
     const category = categories.find((category) => category.name === categoryName)
     return category.iconClass
