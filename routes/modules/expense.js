@@ -10,14 +10,22 @@ router.get('/', async (req, res) => {
   try {
     const userId = req.user._id
     const [records, categories] = await Promise.all([Record.find({ userId, type: 'expense' }).lean().sort('-date'), Category.find().lean()])
-    const totalAmount = getAccountingFormat(getTotalAmount(records))
-    const defaultStartDate = '2021-01-01'
-    const today = moment().format('YYYY-MM-DD')
+    // processing records
     records.forEach((record) => {
       record.iconClass = getIconClassName(record.category, categories)
       record.date = moment(record.date).format('YYYY-MM-DD')
     })
-    res.render('expense/index', { records, totalAmount, startDate: defaultStartDate, endDate: today })
+    // processing other data
+    const totalAmount = getAccountingFormat(getTotalAmount(records))
+    const defaultStartDate = '2021-01-01'
+    const today = moment().format('YYYY-MM-DD')
+
+    res.render('expense/index', {
+      records,
+      totalAmount,
+      startDate: defaultStartDate,
+      endDate: today,
+    })
   } catch (err) {
     console.log(err)
   }
@@ -28,8 +36,7 @@ router.get('/filter', async (req, res) => {
   try {
     const userId = req.user._id
     const categoryFilter = req.query.category
-    const defaultStartDate = '2021-01-01'
-    let { startDate = defaultStartDate, endDate = moment().format('YYYY-MM-DD') } = req.query // set default value if undefined
+    let { startDate = '2021-01-01', endDate = moment().format('YYYY-MM-DD') } = req.query // set default value if undefined
     if (new Date(startDate) > new Date(endDate)) {
       ;[startDate, endDate] = [endDate, startDate]
     }
@@ -44,11 +51,14 @@ router.get('/filter', async (req, res) => {
         .sort('-date'),
       Category.find().lean(),
     ])
-    const totalAmount = getAccountingFormat(getTotalAmount(filteredRecords))
+    // processing records
     filteredRecords.forEach((record) => {
       record.iconClass = getIconClassName(record.category, categories)
       record.date = moment(record.date).format('YYYY-MM-DD')
     })
+    // processing other data
+    const totalAmount = getAccountingFormat(getTotalAmount(filteredRecords))
+
     res.render('expense/index', {
       records: filteredRecords,
       totalAmount,
@@ -76,7 +86,11 @@ router.post('/', async (req, res) => {
     if (!inputValidation(newRecord)) {
       // display alert for validation error
       validationError = true
-      res.render('expense/new', { record: newRecord, validationError, date: newRecord.date })
+      res.render('expense/new', {
+        record: newRecord,
+        validationError,
+        date: newRecord.date,
+      })
     } else {
       await Record.create(newRecord)
       return res.redirect('/expense/records')
@@ -104,7 +118,7 @@ router.put('/:id', async (req, res) => {
   try {
     const userId = req.user._id
     const _id = req.params.id
-    const editedRecord = Object.assign({ _id, userId }, req.body) // pass the id to view template for next submit route
+    const editedRecord = Object.assign({ _id, userId }, req.body) // return the id to view template for form if not passing validation
     let validationError = false
     if (!inputValidation(editedRecord)) {
       // display alert for validation error

@@ -10,14 +10,21 @@ router.get('/', async (req, res) => {
   try {
     const userId = req.user._id
     const [records, categories] = await Promise.all([Record.find({ userId, type: 'income' }).lean().sort('-date'), Category.find().lean()])
-    const totalAmount = getAccountingFormat(getTotalAmount(records))
-    const defaultStartDate = '2021-01-01'
-    const today = moment().format('YYYY-MM-DD')
+    // processing records
     records.forEach((record) => {
       record.iconClass = getIconClassName(record.category, categories)
       record.date = moment(record.date).format('YYYY-MM-DD')
     })
-    res.render('income/index', { records, totalAmount, startDate: defaultStartDate, endDate: today })
+    // processing other data
+    const totalAmount = getAccountingFormat(getTotalAmount(records))
+    const defaultStartDate = '2021-01-01'
+    const today = moment().format('YYYY-MM-DD')
+    res.render('income/index', {
+      records,
+      totalAmount,
+      startDate: defaultStartDate,
+      endDate: today,
+    })
   } catch (err) {
     console.log(err)
   }
@@ -33,6 +40,7 @@ router.get('/filter', async (req, res) => {
     if (new Date(startDate) > new Date(endDate)) {
       ;[startDate, endDate] = [endDate, startDate]
     }
+    // processing records
     const [filteredRecords, categories] = await Promise.all([
       Record.find({
         category: { $regex: categoryFilter },
@@ -44,11 +52,13 @@ router.get('/filter', async (req, res) => {
         .sort('-date'),
       Category.find().lean(),
     ])
-    const totalAmount = getAccountingFormat(getTotalAmount(filteredRecords))
     filteredRecords.forEach((record) => {
       record.iconClass = getIconClassName(record.category, categories)
       record.date = moment(record.date).format('YYYY-MM-DD')
     })
+    // processing other data
+    const totalAmount = getAccountingFormat(getTotalAmount(filteredRecords))
+
     res.render('income/index', {
       records: filteredRecords,
       totalAmount,
