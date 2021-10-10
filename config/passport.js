@@ -2,6 +2,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const FacebookStrategy = require('passport-facebook').Strategy
 const GoogleStrategy = require('passport-google-oauth20').Strategy
+const GitHubStrategy = require('passport-github2').Strategy
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 
@@ -54,7 +55,6 @@ module.exports = (app) => {
       }
     )
   )
-
   // Google strategy
   passport.use(
     new GoogleStrategy(
@@ -66,6 +66,33 @@ module.exports = (app) => {
       async (accessToken, refreshToken, profile, done) => {
         try {
           const { name, email } = profile._json
+          let user = await User.findOne({ email })
+          if (user) return done(null, user)
+          const randomPassword = Math.random().toString(36).slice(-10)
+          const salt = await bcrypt.genSalt(10)
+          const hash = await bcrypt.hash(randomPassword, salt)
+          user = await User.create({ name, email, password: hash })
+          return done(null, user)
+        } catch (err) {
+          console.log(err)
+          done(err, false)
+        }
+      }
+    )
+  )
+  // GitHub strategy
+  passport.use(
+    new GitHubStrategy(
+      {
+        clientID: process.env.GITHUB_ID,
+        clientSecret: process.env.GITHUB_SECRET,
+        callbackURL: process.env.GITHUB_CALLBACK,
+        scope: ['user:email'],
+      },
+      async (accessToken, refreshToken, profile, done) => {
+        try {
+          const { name } = profile._json
+          const email = profile.emails[0].value
           let user = await User.findOne({ email })
           if (user) return done(null, user)
           const randomPassword = Math.random().toString(36).slice(-10)
