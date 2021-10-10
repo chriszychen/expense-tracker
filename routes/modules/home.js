@@ -17,6 +17,8 @@ router.get('/', async (req, res) => {
       record.date = moment(record.date).format('YYYY-MM-DD')
     })
     // processing chart data
+    const isIncomeRecordPresent = records.some((record) => record.type === 'income')
+    const isExpenseRecordPresent = records.some((record) => record.type === 'expense')
     const incomeCategorizedSum = JSON.stringify(getIncomeCategorizedSum(records))
     const expenseCategorizedSum = JSON.stringify(getExpenseCategorizedSum(records))
     // processing other data
@@ -26,6 +28,8 @@ router.get('/', async (req, res) => {
 
     res.render('index', {
       records,
+      isIncomeRecordPresent,
+      isExpenseRecordPresent,
       incomeCategorizedSum,
       expenseCategorizedSum,
       totalAmount,
@@ -60,6 +64,8 @@ router.get('/filter', async (req, res) => {
       record.date = moment(record.date).format('YYYY-MM-DD')
     })
     // processing chart data
+    const isIncomeRecordPresent = filteredRecords.some((record) => record.type === 'income')
+    const isExpenseRecordPresent = filteredRecords.some((record) => record.type === 'expense')
     const incomeCategorizedSum = JSON.stringify(getIncomeCategorizedSum(filteredRecords))
     const expenseCategorizedSum = JSON.stringify(getExpenseCategorizedSum(filteredRecords))
     // processing other data
@@ -67,6 +73,8 @@ router.get('/filter', async (req, res) => {
 
     res.render('index', {
       records: filteredRecords,
+      isIncomeRecordPresent,
+      isExpenseRecordPresent,
       incomeCategorizedSum,
       expenseCategorizedSum,
       totalAmount,

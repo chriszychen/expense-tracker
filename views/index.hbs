@@ -28,14 +28,18 @@
         </div>
       </div>
       <div class="row d-flex justify-content-around">
+        {{#if isIncomeRecordPresent}}
         <div class="col-5 m-3">
           <canvas id="income-chart" width="400" height="400" aria-label="income doughnut chart"></canvas>
           <span class="income-category-sum" hidden>{{ incomeCategorizedSum }}</span>
         </div>
+        {{/if}}
+        {{#if isExpenseRecordPresent}}
         <div class="col-5 m-3">
           <canvas id="expense-chart" width="400" height="400" aria-label="expense doughnut chart"></canvas>
           <span class="expense-category-sum" hidden>{{ expenseCategorizedSum }}</span>
         </div>
+        {{/if}}
       </div>
     </div>
   </div>
