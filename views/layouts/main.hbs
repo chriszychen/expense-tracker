@@ -14,28 +14,34 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex justify-content-between">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top d-flex justify-content-between">
       <a class="navbar-brand" href="#">
         <strong>
         {{#if isAuthenticated}}{{ user.name }}'s {{/if}}Expense Tracker
         </strong>
       </a>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Balance</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/expense/records">Expense</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/income/records">Income</a>
-        </li>
-      </ul>
-      {{#if isAuthenticated}}
-      <a href="/users/logout" class="btn btn-outline-warning">Log Out</a>
-      {{else}}
-      <a href="/users/login" class="btn btn-outline-light">Log In</a>
-      {{/if}}
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Balance</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/expense/records">Expense</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/income/records">Income</a>
+          </li>
+        </ul>
+        {{#if isAuthenticated}}
+        <a href="/users/logout" class="btn btn-outline-warning">Log Out</a>
+        {{else}}
+        <a href="/users/login" class="btn btn-outline-light">Log In</a>
+        {{/if}}
+      </div>
     </nav>
   </header>
 
