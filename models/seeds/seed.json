@@ -27,7 +27,7 @@
       "place": "銀行",
       "category": "investment",
       "date": "2021-04-01",
-      "amount": 300
+      "amount": 3000
     },
     {
       "type": "income",
@@ -35,7 +35,7 @@
       "place": "路上",
       "category": "others",
       "date": "2021-04-01",
-      "amount": 500
+      "amount": 1000
     },
     {
       "type": "expense",
