@@ -39,6 +39,24 @@ function printIncomeChart() {
             size: 16,
           },
         },
+        tooltip: {
+          callbacks: {
+            footer: (tooltipItem) => {
+              let sum = 0
+              const dataArr = tooltipItem[0].dataset.data
+              dataArr.forEach((data) => {
+                sum += Number(data)
+              })
+
+              const percentage = ((tooltipItem[0].parsed * 100) / sum).toFixed(2) + '%'
+              return `Percentage: ${percentage}`
+            },
+          },
+          footerFont: {
+            family: "'Arial', sans-serif",
+            weight: 'normal',
+          },
+        },
       },
     },
   })
@@ -74,6 +92,24 @@ function printExpenseChart() {
           font: {
             family: "'Arial', sans-serif",
             size: 16,
+          },
+        },
+        tooltip: {
+          callbacks: {
+            footer: (tooltipItem) => {
+              let sum = 0
+              const dataArr = tooltipItem[0].dataset.data
+              dataArr.forEach((data) => {
+                sum += Number(data)
+              })
+
+              const percentage = ((tooltipItem[0].parsed * 100) / sum).toFixed(2) + '%'
+              return `Percentage: ${percentage}`
+            },
+          },
+          footerFont: {
+            family: "'Arial', sans-serif",
+            weight: 'normal',
           },
         },
       },
