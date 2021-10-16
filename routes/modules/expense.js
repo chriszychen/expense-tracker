@@ -6,7 +6,7 @@ const Category = require('../../models/category')
 const { getIconClassName, getTotalAmount, getAccountingFormat, inputValidation } = require('../../public/javascripts/helpers')
 
 // render index page
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
   try {
     const userId = req.user._id
     const [records, categories] = await Promise.all([Record.find({ userId, type: 'expense' }).lean().sort('-date'), Category.find().lean()])
@@ -28,11 +28,12 @@ router.get('/', async (req, res) => {
     })
   } catch (err) {
     console.log(err)
+    next(err)
   }
 })
 
 // render filtered records
-router.get('/filter', async (req, res) => {
+router.get('/filter', async (req, res, next) => {
   try {
     const userId = req.user._id
     const categoryFilter = req.query.category
@@ -68,17 +69,18 @@ router.get('/filter', async (req, res) => {
     })
   } catch (err) {
     console.log(err)
+    next(err)
   }
 })
 
 // render new page
-router.get('/new', (req, res) => {
+router.get('/new', (req, res, next) => {
   const today = moment().format('YYYY-MM-DD')
   res.render('expense/new', { date: today })
 })
 
 // CREATE function
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
   try {
     const userId = req.user._id
     const newRecord = Object.assign({ userId }, req.body)
@@ -97,11 +99,12 @@ router.post('/', async (req, res) => {
     }
   } catch (err) {
     console.log(err)
+    next(err)
   }
 })
 
 // render edit page
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit', async (req, res, next) => {
   try {
     const userId = req.user._id
     const _id = req.params.id
@@ -110,11 +113,12 @@ router.get('/:id/edit', async (req, res) => {
     return res.render('expense/edit', { record })
   } catch (err) {
     console.log(err)
+    next(err)
   }
 })
 
 // UPDATE function
-router.put('/:id', async (req, res) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const userId = req.user._id
     const _id = req.params.id
@@ -132,11 +136,12 @@ router.put('/:id', async (req, res) => {
     }
   } catch (err) {
     console.log(err)
+    next(err)
   }
 })
 
 // DELETE function
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     const userId = req.user._id
     const _id = req.params.id
@@ -145,6 +150,7 @@ router.delete('/:id', async (req, res) => {
     return res.redirect('/expense/records')
   } catch (err) {
     console.log(err)
+    next(err)
   }
 })
 

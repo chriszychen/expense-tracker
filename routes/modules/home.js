@@ -6,7 +6,7 @@ const Category = require('../../models/category')
 const { getAccountingFormat, getTotalBalance, getIconClassName, getIncomeCategorizedSum, getExpenseCategorizedSum } = require('../../public/javascripts/helpers')
 
 // render index page
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
   try {
     const userId = req.user._id
     const [records, categories] = await Promise.all([Record.find({ userId }).lean().sort('-date'), Category.find().lean()])
@@ -38,11 +38,12 @@ router.get('/', async (req, res) => {
     })
   } catch (err) {
     console.log(err)
+    next(err)
   }
 })
 
 // render filtered records
-router.get('/filter', async (req, res) => {
+router.get('/filter', async (req, res, next) => {
   try {
     const userId = req.user._id
     let { startDate = '2021-01-01', endDate = moment().format('YYYY-MM-DD') } = req.query // set default value if undefined
@@ -83,6 +84,7 @@ router.get('/filter', async (req, res) => {
     })
   } catch (err) {
     console.log(err)
+    next(err)
   }
 })
 
