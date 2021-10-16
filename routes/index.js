@@ -21,12 +21,20 @@ router.all('*', (req, res, next) => {
 })
 
 router.use((err, req, res, next) => {
-  // set default error name and message
-  err.name = err.name || 'Internal Server Error'
-  err.statusCode = err.statusCode || 500
+  let name, message
+  if (err.statusCode === 404) {
+    name = err.name
+    message = err.message
+  } else {
+    // default error name and message
+    err.statusCode = 500
+    name = 'Internal Server Error'
+    message = 'Something wrong happened! Please try again.'
+  }
 
   res.status(err.statusCode).render('error', {
-    error: err,
+    name,
+    message,
   })
 })
 
