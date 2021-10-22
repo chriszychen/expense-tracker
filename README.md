@@ -1,6 +1,7 @@
 # Expense Tracker
-利用 Node.js + Express 打造的簡易支出與收入記帳網站 <br>
+利用 Node.js + Express 打造的簡易支出與收入記帳網站 <br/><br/>
 ![login image](https://github.com/chriszychen/expense-tracker/blob/main/public/images/login.PNG)
+<br/><br/>
 ![index image](https://github.com/chriszychen/expense-tracker/blob/main/public/images/index.PNG)
 ## Live Demo
 [My Expense Tracker](https://expense-tracker-demo-chris.herokuapp.com/)
@@ -34,7 +35,7 @@ npm install
 
 3.啟動MongoDB資料庫<br/><br/>
 
-4.修改.env.example檔名為.env並將自己的Facebook App ID和Facebook App Secret填入後存檔<br/><br/>
+4.利用.env.example建立.env檔案並將對應的ID與SECRET填入<br/><br/>
 
 5.啟動伺服器
 ```
