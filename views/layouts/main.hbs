@@ -26,13 +26,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
+          <li class="nav-item {{#if atBalance}} active {{/if}}">
             <a class="nav-link" href="/">Balance</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {{#if atExpense}} active {{/if}}">
             <a class="nav-link" href="/expense/records">Expense</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {{#if atIncome}} active {{/if}}">
             <a class="nav-link" href="/income/records">Income</a>
           </li>
         </ul>

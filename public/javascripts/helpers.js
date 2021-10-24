@@ -62,4 +62,14 @@ module.exports = {
     // pass validation
     return true
   },
+  setNavbarIfActive(req, res, next) {
+    if (req.path.includes('balance')) {
+      res.locals.atBalance = true
+    } else if (req.path.includes('expense')) {
+      res.locals.atExpense = true
+    } else if (req.path.includes('income')) {
+      res.locals.atIncome = true
+    }
+    return next()
+  },
 }
