@@ -61,6 +61,12 @@ body {
   height: 3vw;
 }
 
+.logo-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #expense-filter option {
   font-size: 15px;
 }
