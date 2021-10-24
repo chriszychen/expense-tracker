@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const home = require('./modules/home')
+const balance = require('./modules/balance')
 const expense = require('./modules/expense')
 const income = require('./modules/income')
 const users = require('./modules/users')
@@ -9,9 +9,9 @@ const { authenticator } = require('../middleware/auth')
 
 router.use('/users', users)
 router.use('/auth', auth)
+router.use('/balance/records', authenticator, balance)
 router.use('/expense/records', authenticator, expense)
 router.use('/income/records', authenticator, income)
-router.use('/', authenticator, home)
 
 router.all('*', (req, res, next) => {
   const err = new Error(`Cannot find the page ${req.protocol}://${req.hostname}${req.originalUrl}`)
