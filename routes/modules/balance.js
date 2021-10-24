@@ -26,7 +26,7 @@ router.get('/', async (req, res, next) => {
     const defaultStartDate = '2021-01-01'
     const today = moment().format('YYYY-MM-DD')
 
-    res.render('index', {
+    res.render('balance/index', {
       records,
       isIncomeRecordPresent,
       isExpenseRecordPresent,
@@ -72,7 +72,7 @@ router.get('/filter', async (req, res, next) => {
     // processing other data
     const totalAmount = getAccountingFormat(getTotalBalance(filteredRecords))
 
-    res.render('index', {
+    res.render('balance/index', {
       records: filteredRecords,
       isIncomeRecordPresent,
       isExpenseRecordPresent,
