@@ -1,7 +1,7 @@
 <div class="row mt-5">
   <div class="col-md-6 m-auto">
     <div class="card card-body">
-      <h1 class="text-center mt-3">登入</h1>
+      <h1 class="text-center mt-3">Login</h1>
       {{> message}}
       <form action="/users/login" method="POST">
         <div class="form-group">
@@ -9,16 +9,16 @@
           <input type="email" id="email" name="email" class="form-control" placeholder="輸入 Email">
         </div>
         <div class="form-group">
-          <label for="password">密碼</label>
+          <label for="password">Password</label>
           <input type="password" id="password" name="password" class="form-control" placeholder="輸入密碼">
         </div>
-        <button type="submit" class="btn btn-light btn-block mb-2">Email 登入</button>
-        <a href="/auth/facebook" class="btn btn-light btn-block logo-button"  style="line-height: 100%;"><img src="/images/Facebook_logo_rect.svg" alt="Facebook logo" width="25" height="25">&nbsp;Facebook 登入</a>
-        <a href="/auth/google" class="btn btn-light btn-block logo-button"><img src="/images/Google_logo.svg" alt="Google logo" width="20" height="20">&nbsp;Google 登入</a>
-        <a href="/auth/github" class="btn btn-light btn-block logo-button"><img src="/images/GitHub_logo.png" alt="GitHub logo" width="20" height="20">&nbsp;GitHub 登入</a>
+        <button type="submit" class="btn btn-primary btn-block mb-2">Login</button>
+        <a href="/auth/facebook" class="btn btn-light btn-block logo-button"  style="line-height: 100%;"><img src="/images/Facebook_logo_rect.svg" alt="Facebook logo" width="25" height="25">&nbsp;Login with Facebook</a>
+        <a href="/auth/google" class="btn btn-light btn-block logo-button"><img src="/images/Google_logo.svg" alt="Google logo" width="20" height="20">&nbsp;Login with Google</a>
+        <a href="/auth/github" class="btn btn-light btn-block logo-button"><img src="/images/GitHub_logo.png" alt="GitHub logo" width="20" height="20">&nbsp;Login with GitHub</a>
       </form>
       <p class="lead mt-4">
-        還沒有帳號嗎？ <a href="/users/register">點此註冊</a>
+        No account ? <a href="/users/register">Click here to register</a>
       </p>
     </div>
   </div>

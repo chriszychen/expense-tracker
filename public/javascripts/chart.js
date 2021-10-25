@@ -10,7 +10,7 @@ if (document.querySelector('#expense-chart') !== null) {
 function printIncomeChart() {
   const incomeCtx = document.querySelector('#income-chart')
   const incomeData = JSON.parse(document.querySelector('.income-category-sum').innerText)
-  const incomeLabels = ['salary', 'bonus', 'investment', 'others']
+  const incomeLabels = ['Salary', 'Bonus', 'Investment', 'Others']
   const incomeChart = new Chart(incomeCtx, {
     type: 'doughnut',
     data: {
@@ -65,7 +65,7 @@ function printIncomeChart() {
 function printExpenseChart() {
   const expenseCtx = document.querySelector('#expense-chart')
   const expenseData = JSON.parse(document.querySelector('.expense-category-sum').innerText)
-  const expenseLabels = ['housewares', 'transportation', 'entertainment', 'consumption', 'others']
+  const expenseLabels = ['Housewares', 'Transportation', 'Entertainment', 'Consumption', 'Others']
   const expenseChart = new Chart(expenseCtx, {
     type: 'doughnut',
     data: {

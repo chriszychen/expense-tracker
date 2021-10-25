@@ -4,19 +4,19 @@
     <div class="col-10">
       <div class="row">
         <div class="mx-auto">
-          <a href="/expense/records/new" class="btn btn-outline-info ml-3 mb-4">新增支出</a>
+          <a href="/expense/records/new" class="btn btn-outline-info ml-3 mb-4">Create</a>
         </div>
       </div>
       <form name="filter-form" action="/expense/records/filter" method="GET" id="filter-form">
         <div class="row mb-3">
           <div class="col-8 mx-auto d-flex justify-content-around date-filter">
-            <div class="text-center pt-1 pl-3">從</div>
+            <div class="text-center pt-1 pl-3">FROM</div>
             <div class="px-0">
               <div class="container-fluid form-group mb-0">
                 <input type="date" name="startDate" value="{{ startDate }}" id="start-date-input">
               </div>
             </div>
-            <div class="text-center pt-1">到</div>
+            <div class="text-center pt-1">TO</div>
             <div class="px-0">
               <div class="container-fluid form-group mb-0">
                 <input type="date" name="endDate" value="{{ endDate }}" id="end-date-input">
@@ -29,14 +29,14 @@
             <div class="container-fluid form-group filter-dropdown">
               <select name="category" class="form-control mx-auto" id='category-filter' onchange="submit()"
                 style="cursor: pointer;">
-                <option value="">全部分類</option>
-                <option value="housewares" {{#if (eq categoryFilter 'housewares' )}} selected {{/if}}>家居物業</option>
-                <option value="transportation" {{#if (eq categoryFilter 'transportation' )}} selected {{/if}}>交通出行
+                <option value="">All</option>
+                <option value="housewares" {{#if (eq categoryFilter 'housewares' )}} selected {{/if}}>Housewares</option>
+                <option value="transportation" {{#if (eq categoryFilter 'transportation' )}} selected {{/if}}>Transportation
                 </option>
-                <option value="entertainment" {{#if (eq categoryFilter 'entertainment' )}} selected {{/if}}>休閒娛樂
+                <option value="entertainment" {{#if (eq categoryFilter 'entertainment' )}} selected {{/if}}>Entertainment
                 </option>
-                <option value="consumption" {{#if (eq categoryFilter 'consumption' )}} selected {{/if}}>餐飲食品</option>
-                <option value="others" {{#if (eq categoryFilter 'others' )}} selected {{/if}}>其他</option>
+                <option value="consumption" {{#if (eq categoryFilter 'consumption' )}} selected {{/if}}>Consumption</option>
+                <option value="others" {{#if (eq categoryFilter 'others' )}} selected {{/if}}>Others</option>
               </select>
             </div>
           </div>
@@ -44,7 +44,7 @@
       </form>
       <div class="row">
         <div class="col-4 mr-auto">
-          <p class="mt-3 ml-5 font-weight-bold total-amount-text">總金額：</h3>
+          <p class="mt-3 ml-5 font-weight-bold total-amount-text">TOTAL:</h3>
         </div>
         <div class="col-auto">
           <p class="total-amount-expense">{{ totalAmount }}</p>
@@ -95,12 +95,12 @@
         </button>
       </div>
       <div class="modal-body">
-        確定要刪除此筆支出紀錄？
+        Are you sure to delete this record?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         <form action="/expense/records/:id?_method=DELETE" method="POST" style="display: inline;" id="confirm-form">
-          <button type="submit" class="btn btn-primary">確定</button>
+          <button type="submit" class="btn btn-danger">Delete</button>
         </form>
       </div>
     </div>
