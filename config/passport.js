@@ -16,11 +16,11 @@ module.exports = (app) => {
       try {
         const user = await User.findOne({ email })
         if (!user) {
-          return done(null, false, { type: 'danger_msg', message: '這個 Email 尚未註冊！' })
+          return done(null, false, { type: 'danger_msg', message: 'This email has not been registered!' })
         }
         const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) {
-          return done(null, false, { type: 'danger_msg', message: 'Email 或 密碼 輸入錯誤！' })
+          return done(null, false, { type: 'danger_msg', message: 'Wrong email or password!' })
         }
         return done(null, user)
       } catch (err) {
