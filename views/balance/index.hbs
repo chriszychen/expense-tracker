@@ -2,14 +2,16 @@
   <div class="row d-flex justify-content-center">
     <div class="col-10">
       <form name="filter-form" action="/balance/records/filter" method="GET" id="filter-form">
-        <div class="row mb-3">
-          <div class="col-8 mx-auto d-flex justify-content-around date-filter">
+        <div class="row mb-3 d-flex justify-content-center">
+          <div class="col-10 col-md-5 date-filter d-flex justify-content-around mb-3">
             <div class="text-center pt-1 pl-3">FROM</div>
             <div class="px-0">
               <div class="container-fluid form-group mb-0">
                 <input type="date" name="startDate" value="{{ startDate }}" id="start-date-input">
               </div>
             </div>
+          </div>
+          <div class="col-10 col-md-5 date-filter d-flex justify-content-around mb-3">
             <div class="text-center pt-1">TO</div>
             <div class="px-0">
               <div class="container-fluid form-group mb-0">
@@ -20,22 +22,22 @@
         </div>
       </form>
       <div class="row">
-        <div class="col-4 mr-auto">
-          <p class="mt-3 ml-5 font-weight-bold total-amount-text">TOTAL:</h3>
+        <div class="col-12 col-sm-4 mr-auto d-flex justify-content-center align-items-center">
+          <p class="font-weight-bold total-amount-text">TOTAL:</h3>
         </div>
-        <div class="col-auto">
+        <div class="col-12 col-sm-5 d-flex justify-content-center align-items-center">
           <p class="{{#if (lt totalAmount '0')}} total-amount-expense {{else}} total-amount-income {{/if}}">{{ totalAmount }}</p>
         </div>
       </div>
       <div class="row d-flex justify-content-around">
         {{#if isIncomeRecordPresent}}
-        <div class="col-5 m-3">
+        <div class="col-12 col-md-6 col-lg-5 mb-3">
           <canvas id="income-chart" width="400" height="400" aria-label="income doughnut chart"></canvas>
           <span class="income-category-sum" hidden>{{ incomeCategorizedSum }}</span>
         </div>
         {{/if}}
         {{#if isExpenseRecordPresent}}
-        <div class="col-5 m-3">
+        <div class="col-12 col-md-6 col-lg-5 mb-3">
           <canvas id="expense-chart" width="400" height="400" aria-label="expense doughnut chart"></canvas>
           <span class="expense-category-sum" hidden>{{ expenseCategorizedSum }}</span>
         </div>
