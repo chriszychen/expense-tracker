@@ -1,9 +1,9 @@
 <div class="container new-container mt-3 px-5">
   <div class="row">
-    <div class="col-12 col-sm-3 d-flex justify-content-center align-items-center">* required</div>
-    <div class="col-12 col-sm-9 text-center">
+    <div class="col-12 text-left text-sm-center">
       <h3 class="font-weight-bold m-0">Edit your expense details</h3>
     </div>
+    <div class="col-12 d-flex justify-content-start justify-content-sm-center align-items-center mt-2">* required</div>
   </div>
   {{#if validationError}}
   <div class="row">
@@ -17,7 +17,7 @@
   <form action="/expense/records/{{ record._id }}?_method=PUT" method="POST">
     <input type="text" name="type" class="form-control" value="expense" hidden required>
     <div class="row form-group mt-4">
-      <div class="col-12 col-sm-3 d-flex justify-content-center align-items-center">
+      <div class="col-12 col-sm-3 d-flex justify-content-start justify-content-sm-center align-items-center">
         <label for="name" class="col-form-label font-weight-bold">Name*：</label>
       </div>
       <div class="col-12 col-sm-9">
@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="row form-group mt-4">
-      <div class="col-12 col-sm-3 d-flex justify-content-center align-items-center">
+      <div class="col-12 col-sm-3 d-flex justify-content-start justify-content-sm-center align-items-center">
         <label for="place" class="col-form-label font-weight-bold">Merchant*：</label>
       </div>
       <div class="col-12 col-sm-9">
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="row form-group mt-4">
-      <div class="col-12 col-sm-3 d-flex justify-content-center align-items-center">
+      <div class="col-12 col-sm-3 d-flex justify-content-start justify-content-sm-center align-items-center">
         <label for="date" class="col-form-label font-weight-bold">Date*：</label>
       </div>
       <div class="col-12 col-sm-9">
@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="row form-group mt-4">
-      <div class="col-12 col-sm-3 d-flex justify-content-center align-items-center">
+      <div class="col-12 col-sm-3 d-flex justify-content-start justify-content-sm-center align-items-center">
         <label for="category" class="col-form-label font-weight-bold">Category*：</label>
       </div>
       <div class="col-12 col-sm-9">
@@ -55,7 +55,7 @@
       </div>
     </div>
     <div class="row form-group mt-4">
-      <div class="col-12 col-sm-3 d-flex justify-content-center align-items-center">
+      <div class="col-12 col-sm-3 d-flex justify-content-start justify-content-sm-center align-items-center">
         <label for="amount" class="col-form-label font-weight-bold">Amount*：</label>
       </div>
       <div class="col-12 col-sm-9">
