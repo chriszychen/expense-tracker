@@ -3,7 +3,7 @@
     <div class="col-10">
       <form name="filter-form" action="/balance/records/filter" method="GET" id="filter-form">
         <div class="row mb-3 d-flex justify-content-center">
-          <div class="col-10 col-md-5 date-filter d-flex justify-content-around mb-3">
+          <div class="col-12 col-md-5 date-filter d-flex justify-content-center justify-content-md-around mb-3">
             <div class="text-center pt-1 pl-3">FROM</div>
             <div class="px-0">
               <div class="container-fluid form-group mb-0">
@@ -11,7 +11,7 @@
               </div>
             </div>
           </div>
-          <div class="col-10 col-md-5 date-filter d-flex justify-content-around mb-3">
+          <div class="col-12 col-md-5 date-filter d-flex justify-content-center justify-content-md-around mb-3">
             <div class="text-center pt-1">TO</div>
             <div class="px-0">
               <div class="container-fluid form-group mb-0">
@@ -48,21 +48,27 @@
   <ul class="list-group" id="record-panel">
     {{#each records}}
     <div class="row d-flex justify-content-center">
-      <div class="col-10">
+      <div class="col-12 col-md-10">
         <li class="list-group-item">
           <div class="row">
             <div class="col-2 d-flex justify-content-center align-items-center
               {{#if (eq this.type 'income')}} category-icon-income {{else}} category-icon-expense {{/if}}">
               <i class="{{ this.iconClass }}"></i>
             </div>
-            <div class="col-auto mr-auto">
-              <p class="my-3 font-weight-bold record-name">{{ this.name }}</p>
-              <p class="my-3 font-weight-bold record-date">{{ this.date }}</p>
-              <i class="fas fa-store place-icon"></i>
-              <p class="my-3 font-weight-bold d-inline record-place"> {{ this.place }}</p>
+            <div class="col-7 mr-auto">
+              <div class="row">
+                <div class="col-12 col-lg-6">
+                  <p class="my-3 font-weight-bold record-name">{{ this.name }}</p>
+                  <p class="my-3 font-weight-bold record-date">{{ this.date }}</p>
+                </div>
+                <div class="col-12 col-lg-6 d-flex align-items-center">
+                  <i class="fas fa-store place-icon"></i>
+                  <p class="m-2 font-weight-bold d-inline record-place">{{ this.place }}</p>
+                </div>
+              </div>
             </div>
-            <div class="col-auto d-flex align-items-center">
-              <p class="font-weight-bold record-amount">$ {{ this.amount }}</p>
+            <div class="col-3 d-flex justify-content-end align-items-center">
+              <p class="font-weight-bold record-amount">$&nbsp;{{ this.amount }}</p>
             </div>
           </div>
         </li>

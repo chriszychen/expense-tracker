@@ -1,48 +1,46 @@
 body {
   background-color: #fff6f5;
 }
+.navbar-title {
+  font-size: 18px;
+}
 .index-container, .new-container {
   font: 1em sans-serif;
   color: #666666;
 }
 .total-amount-text {
-  font-size: 2vw;
+  font-size: 6vw;
 }
 
 .total-amount-income {
-  font-size: 6vw;
+  font-size: 9vw;
   color: lightseagreen;
 }
 
 .total-amount-expense {
-  font-size: 6vw;
+  font-size: 9vw;
   color: lightcoral;
 }
 
-.category-icon {
-  font-size: 4vw;
-  color: #85baff;
-}
-
 .category-icon-income {
-  font-size: 4vw;
+  font-size: 8vw;
   color: lightseagreen;
 }
 
 .category-icon-expense {
-  font-size: 4vw;
+  font-size: 8vw;
   color: lightcoral;
 }
 .record-name, .record-date {
-  font-size: 1.5vw;
+  font-size: 4vw;
 }
 
 .place-icon, .record-place {
-  font-size: 1.25vw;
+  font-size: 4vw;
 }
 
 .record-amount {
-  font-size: 2vw;
+  font-size: 5vw;
 }
 
 .col-form-label {
@@ -57,8 +55,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 3vw;
-  height: 3vw;
+  width: 8vw;
+  height: 8vw;
+  font-size: 2.5vw;
 }
 
 .logo-button {
@@ -69,4 +68,52 @@ body {
 
 #expense-filter option {
   font-size: 15px;
+}
+
+/* Bootstrap sm breakpoint */
+@media screen and (min-width: 576px) {
+  .total-amount-text {
+    font-size: 4vw;
+  }
+  .category-icon-expense, .category-icon-income {
+    font-size: 6vw;
+  }
+  .record-name, .record-date, .place-icon, .record-place {
+    font-size: 2.5vw;
+  }
+  .record-amount {
+    font-size: 3vw;
+  }
+  .icon-button {
+    width: 4.5vw;
+    height: 4.5vw;
+    font-size: 1.5vw;
+  }
+}
+
+/* Bootstrap lg breakpoint */
+@media screen and (min-width: 992px) {
+  .navbar-title {
+    font-size: 20px;
+  }
+  .total-amount-text {
+    font-size: 3.5vw;
+  }
+  .total-amount-income, .total-amount-expense {
+    font-size: 6vw;
+  }
+  .category-icon-expense, .category-icon-income {
+    font-size: 4vw;
+  }
+  .record-name, .record-date, .place-icon, .record-place {
+    font-size: 1.5vw;
+  }
+  .record-amount {
+    font-size: 2vw;
+  }
+  .icon-button {
+    width: 3vw;
+    height: 3vw;
+    font-size: 1vw;
+  }
 }
