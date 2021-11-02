@@ -1,54 +1,21 @@
 const express = require('express')
 const router = express.Router()
 
-const passport = require('passport')
+const authController = require('../../controllers/authController.js')
 
-// Facebook Auth routes
-router.get(
-  '/facebook',
-  passport.authenticate('facebook', {
-    scope: ['email', 'public_profile'],
-  })
-)
+// Facebook auth routes
+router.get('/facebook', authController.facebookLogin)
 
-router.get(
-  '/facebook/callback',
-  passport.authenticate('facebook', {
-    successRedirect: '/',
-    failureRedirect: '/users/login',
-  })
-)
+router.get('/facebook/callback', authController.facebookLoginCallback)
 
-// Google Auth routes
-router.get(
-  '/google',
-  passport.authenticate('google', {
-    scope: ['email', 'profile'],
-  })
-)
+// Google auth routes
+router.get('/google', authController.googleLogin)
 
-router.get(
-  '/google/callback',
-  passport.authenticate('google', {
-    successRedirect: '/',
-    failureRedirect: '/users/login',
-  })
-)
+router.get('/google/callback', authController.googleLoginCallback)
 
-// GitHub Auth routes
-router.get(
-  '/github',
-  passport.authenticate('github', {
-    scope: ['user:email'],
-  })
-)
+// GitHub auth routes
+router.get('/github', authController.githubLogin)
 
-router.get(
-  '/github/callback',
-  passport.authenticate('github', {
-    successRedirect: '/',
-    failureRedirect: '/users/login',
-  })
-)
+router.get('/github/callback', authController.githubLoginCallback)
 
 module.exports = router
