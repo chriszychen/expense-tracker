@@ -1,8 +1,20 @@
 # Expense Tracker
 利用 Node.js + Express 打造的簡易支出與收入記帳網站 <br/><br/>
+#### 登入畫面
 ![login image](https://github.com/chriszychen/expense-tracker/blob/main/public/images/login.PNG)
 <br/><br/>
-![index image](https://github.com/chriszychen/expense-tracker/blob/main/public/images/index.PNG)
+
+#### Balance 畫面
+![balance image](https://github.com/chriszychen/expense-tracker/blob/main/public/images/balance.PNG)
+<br/><br/>
+
+#### Expense 畫面
+![balance image](https://github.com/chriszychen/expense-tracker/blob/main/public/images/expense.PNG)
+<br/><br/>
+
+#### Income 畫面
+![balance image](https://github.com/chriszychen/expense-tracker/blob/main/public/images/income.PNG)
+
 ## Live Demo
 [My Expense Tracker](https://expense-tracker-demo-chris.herokuapp.com/)
 
@@ -23,28 +35,25 @@ Demo account - ```root@example.com / 12345678```
 * [MongoDB v4.2.14](https://www.mongodb.com/try/download/community)
 
 ## Installation and Execution - 安裝與執行
-1.打開終端機，使用git clone將專案下載至本地資料夾
+1.使用git clone下載至本地並安裝套件
 ```
 git clone https://github.com/chriszychen/expense-tracker.git
-```
-
-2.安裝專案需求套件
-```
+cd expense-tracker
 npm install 
 ```
 
-3.啟動MongoDB資料庫<br/><br/>
+2.啟動本地 MongoDB 資料庫<br/><br/>
 
-4.利用.env.example建立.env檔案並將對應的ID與SECRET填入<br/><br/>
+3.利用 .env.example 建立 .env 檔案並將對應的 ID 與 SECRET 填入<br/><br/>
 
-5.啟動伺服器
+4.啟動伺服器
 ```
 npm run start
 ```
 
 終端機顯示 ```App is running on http://localhost:3000``` 代表伺服器成功啟動<br/>
 顯示 ```mongodb connected!``` 代表伺服器成功與資料庫連接 <br/><br/>
-6.新增種子資料
+5.新增種子資料
 ```
 npm run seed
 ```
