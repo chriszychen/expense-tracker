@@ -5,15 +5,15 @@
 <br/><br/>
 
 #### Balance 畫面
-![balance image](https://github.com/chriszychen/expense-tracker/blob/main/public/images/balance.PNG)
+![balance image](https://github.com/chriszychen/expense-tracker/blob/main/public/images/balance.png)
 <br/><br/>
 
 #### Expense 畫面
-![balance image](https://github.com/chriszychen/expense-tracker/blob/main/public/images/expense.PNG)
+![balance image](https://github.com/chriszychen/expense-tracker/blob/main/public/images/expense.png)
 <br/><br/>
 
 #### Income 畫面
-![balance image](https://github.com/chriszychen/expense-tracker/blob/main/public/images/income.PNG)
+![balance image](https://github.com/chriszychen/expense-tracker/blob/main/public/images/income.png)
 
 ## Live Demo
 [My Expense Tracker](https://expense-tracker-demo-chris.herokuapp.com/)
