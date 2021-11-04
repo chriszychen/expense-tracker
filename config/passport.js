@@ -40,13 +40,20 @@ module.exports = (app) => {
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
+          const facebookId = profile.id
           const { name, email } = profile._json
-          let user = await User.findOne({ email })
+          let user = await User.findOne({ facebookId })
           if (user) return done(null, user)
+          user = await User.findOne({ email })
+          if (user) {
+            Object.assign(user, { facebookId })
+            user = await user.save()
+            return done(null, user)
+          }
           const randomPassword = Math.random().toString(36).slice(-10)
           const salt = await bcrypt.genSalt(10)
           const hash = await bcrypt.hash(randomPassword, salt)
-          user = await User.create({ name, email, password: hash })
+          user = await User.create({ name, email, password: hash, facebookId })
           return done(null, user)
         } catch (err) {
           console.log(err)
@@ -65,13 +72,20 @@ module.exports = (app) => {
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
+          const googleId = profile.id
           const { name, email } = profile._json
-          let user = await User.findOne({ email })
+          let user = await User.findOne({ googleId })
           if (user) return done(null, user)
+          user = await User.findOne({ email })
+          if (user) {
+            Object.assign(user, { googleId })
+            user = await user.save()
+            return done(null, user)
+          }
           const randomPassword = Math.random().toString(36).slice(-10)
           const salt = await bcrypt.genSalt(10)
           const hash = await bcrypt.hash(randomPassword, salt)
-          user = await User.create({ name, email, password: hash })
+          user = await User.create({ name, email, password: hash, googleId })
           return done(null, user)
         } catch (err) {
           console.log(err)
@@ -91,14 +105,21 @@ module.exports = (app) => {
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
+          const githubId = profile.id
           const { name } = profile._json
           const email = profile.emails[0].value
-          let user = await User.findOne({ email })
+          let user = await User.findOne({ githubId })
           if (user) return done(null, user)
+          user = await User.findOne({ email })
+          if (user) {
+            Object.assign(user, { githubId })
+            user = await user.save()
+            return done(null, user)
+          }
           const randomPassword = Math.random().toString(36).slice(-10)
           const salt = await bcrypt.genSalt(10)
           const hash = await bcrypt.hash(randomPassword, salt)
-          user = await User.create({ name, email, password: hash })
+          user = await User.create({ name, email, password: hash, githubId })
           return done(null, user)
         } catch (err) {
           console.log(err)
