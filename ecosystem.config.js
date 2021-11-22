@@ -3,9 +3,8 @@ module.exports = {
     {
       name: 'app',
       script: './app.js',
-      instances: 'max',
-      watch: '.',
-      ignore_watch: 'node_modules',
+      instances: '2',
+      exec_mode: 'cluster',
       max_memory_restart: '300M',
       env: {
         NODE_ENV: 'development',
