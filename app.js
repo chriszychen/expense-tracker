@@ -17,14 +17,14 @@ require('./config/mongoose')
 const app = express()
 const PORT = process.env.PORT
 
-const RedisStore = require('connect-redis')(session)
-const redisClient = redis.createClient({
-  url: process.env.REDIS_URL,
-  legacyMode: true,
-})
-;(async () => {
-  await redisClient.connect()
-})()
+// const RedisStore = require('connect-redis')(session)
+// const redisClient = redis.createClient({
+//   url: process.env.REDIS_URL,
+//   legacyMode: true,
+// })
+// ;(async () => {
+//   await redisClient.connect()
+// })()
 
 app.engine(
   'hbs',
@@ -45,7 +45,7 @@ app.set('view engine', 'hbs')
 
 app.use(
   session({
-    store: new RedisStore({ client: redisClient }),
+    // store: new RedisStore({ client: redisClient }),
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
