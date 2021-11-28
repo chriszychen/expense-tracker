@@ -19,7 +19,7 @@ const PORT = process.env.PORT
 
 const RedisStore = require('connect-redis')(session)
 const redisClient = redis.createClient({
-  url: process.env.REDIS_URL,
+  url: process.env.REDIS_TLS_URL || process.env.REDIS_URL,
   legacyMode: true,
 })
 ;(async () => {
