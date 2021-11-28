@@ -5,7 +5,7 @@ const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const usePassport = require('./config/passport')
 const flash = require('connect-flash')
-const redis = require('redis')
+const RedisStore = require('connect-redis')(session)
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -13,22 +13,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 const routes = require('./routes')
 require('./config/mongoose')
+const redisClient = require('./config/redis')
 
 const app = express()
 const PORT = process.env.PORT
-
-const RedisStore = require('connect-redis')(session)
-const redisClient = redis.createClient({
-  url: process.env.REDIS_TLS_URL || process.env.REDIS_URL,
-  legacyMode: true,
-  socket: {
-    tls: true,
-    rejectUnauthorized: false,
-  },
-})
-;(async () => {
-  await redisClient.connect()
-})()
 
 app.engine(
   'hbs',
