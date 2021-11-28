@@ -21,6 +21,10 @@ const RedisStore = require('connect-redis')(session)
 const redisClient = redis.createClient({
   url: process.env.REDIS_TLS_URL || process.env.REDIS_URL,
   legacyMode: true,
+  socket: {
+    tls: true,
+    rejectUnauthorized: false,
+  },
 })
 ;(async () => {
   await redisClient.connect()
