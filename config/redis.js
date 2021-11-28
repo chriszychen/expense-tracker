@@ -4,7 +4,7 @@ const redisClient = redis.createClient({
   url: process.env.REDIS_TLS_URL || process.env.REDIS_URL,
   legacyMode: true,
   socket: {
-    tls: true,
+    // tls: true, // not necessary set to true when using tls connection
     rejectUnauthorized: false,
   },
 })
