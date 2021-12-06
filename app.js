@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const usePassport = require('./config/passport')
 const flash = require('connect-flash')
+const helmet = require('helmet')
 const RedisStore = require('connect-redis')(session)
 
 if (process.env.NODE_ENV !== 'production') {
@@ -34,6 +35,15 @@ app.engine(
   })
 )
 app.set('view engine', 'hbs')
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      defaultSrc: process.env.DEFAULT_SRC,
+      scriptSrc: process.env.SCRIPT_SRC,
+    },
+  })
+)
 
 app.use(
   session({
